@@ -1,0 +1,18 @@
+<div class="frame-7"><div class="text-wrapper-7">Bến Xe Phổ Biến</div></div>
+<div class="slider-wrapper">
+  <div class="stations-container">
+    <div class="link" *ngFor="let station of currentStations; let i = index" [ngClass]="'link-' + (i + 1)">
+      <div class="station-bg" [style.background-image]="'url(/assets/img/common/' + station.image + ')'"></div>
+      <div class="frame-9">
+        <p class="p">{{ station.name }}</p>
+      </div>
+    </div>
+  </div>
+  <button class="arrow-circle-left-3" (click)="onPrevClick()" [class.disabled]="!canGoPrev">‹</button>
+  <button class="arrow-circle-right-3" (click)="onNextClick()" [class.disabled]="!canGoNext">›</button>
+  
+  <!-- Page indicator -->
+  <div class="page-indicator">
+    <span class="page-info">{{ currentPage + 1 }} / {{ totalPages }}</span>
+  </div>
+</div>

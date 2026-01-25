@@ -1,0 +1,105 @@
+<div class="bus-stations-page">
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1>Thông Tin Bến Xe</h1>
+      <p>Danh sách các bến xe chính trên toàn quốc</p>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="container">
+      <div class="search-filter">
+        <div class="search-box">
+          <input type="text" placeholder="Tìm kiếm bến xe..." />
+          <button class="search-btn">
+            <img src="assets/img/common/search.svg" alt="Search" />
+          </button>
+        </div>
+        <div class="filter-options">
+          <select>
+            <option>Tất cả tỉnh thành</option>
+            <option>Hà Nội</option>
+            <option>TP.HCM</option>
+            <option>Đà Nẵng</option>
+            <option>Cần Thơ</option>
+          </select>
+          <select>
+            <option>Loại bến xe</option>
+            <option>Bến xe liên tỉnh</option>
+            <option>Bến xe nội tỉnh</option>
+            <option>Bến xe du lịch</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="stations-grid">
+        <div class="station-card" *ngFor="let station of stations">
+          <div class="station-image">
+            <img [src]="station.image" [alt]="station.name" />
+            <div class="operating-badge">
+              <span class="clock">🕐</span>
+              <span class="hours">{{ station.operatingHours }}</span>
+            </div>
+          </div>
+          
+          <div class="station-info">
+            <h3 class="station-name">{{ station.name }}</h3>
+            
+            <div class="station-details">
+              <div class="detail-item">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">{{ station.address }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-icon">📞</span>
+                <span class="detail-text">{{ station.phone }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-icon">🛣️</span>
+                <span class="detail-text">{{ station.routes }}</span>
+              </div>
+            </div>
+            
+            <div class="facilities">
+              <h4>Tiện ích:</h4>
+              <div class="facilities-list">
+                <span class="facility-tag" *ngFor="let facility of station.facilities">
+                  {{ facility }}
+                </span>
+              </div>
+            </div>
+            
+            <div class="station-actions">
+              <button class="btn-primary">Xem bản đồ</button>
+              <button class="btn-secondary">Tìm chuyến xe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <div class="info-card">
+          <h3>Lưu ý khi đến bến xe</h3>
+          <ul>
+            <li>Có mặt tại bến xe trước giờ khởi hành ít nhất 30 phút</li>
+            <li>Mang theo giấy tờ tùy thân và vé xe</li>
+            <li>Kiểm tra kỹ thông tin chuyến xe trước khi lên xe</li>
+            <li>Bảo quản tài sản cá nhân cẩn thận</li>
+            <li>Tuân thủ các quy định của bến xe</li>
+          </ul>
+        </div>
+        
+        <div class="info-card">
+          <h3>Dịch vụ hỗ trợ</h3>
+          <ul>
+            <li>Thông tin tuyến đường và lịch trình</li>
+            <li>Hỗ trợ đặt vé và thanh toán</li>
+            <li>Dịch vụ gửi hành lý</li>
+            <li>Hỗ trợ khách hàng đặc biệt</li>
+            <li>Thông tin du lịch và khách sạn</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

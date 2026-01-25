@@ -1,0 +1,19 @@
+<div class="frame-6"><div class="text-wrapper-7">Nhà Xe Phổ Biến</div></div>
+<div class="slider-wrapper">
+  <div class="companies-container">
+    <div class="link" *ngFor="let company of currentCompanies; let i = index" [ngClass]="'link-' + (i + 1)">
+      <img *ngIf="company.type === 'img'" class="nha-xe-an-hoa-hiep-5" [src]="'assets/img/bus-companies/' + company.image" [alt]="company.name" />
+      <div *ngIf="company.type === 'bg'" class="nha-xe-bg" [style.background-image]="'url(/assets/img/bus-companies/' + company.image + ')'"></div>
+      <div class="frame-9">
+        <p class="p">{{ company.name }}</p>
+      </div>
+    </div>
+  </div>
+  <button class="arrow-circle-left-2" (click)="onPrevClick()" [class.disabled]="!canGoPrev">‹</button>
+  <button class="arrow-circle-right-2" (click)="onNextClick()" [class.disabled]="!canGoNext">›</button>
+  
+  <!-- Page indicator -->
+  <div class="page-indicator">
+    <span class="page-info">{{ currentPage + 1 }} / {{ totalPages }}</span>
+  </div>
+</div>

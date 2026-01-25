@@ -1,0 +1,11 @@
+<div class="frame-5"><div class="text-wrapper-7">Ưu Đãi Nổi Bật</div></div>
+<div class="banner">
+  <button class="img-2" (click)="onPrevClick()" [class.disabled]="!canGoPrev">‹</button>
+  <img class="banner-pc" [src]="'assets/img/common/' + currentBannerData.image" [alt]="currentBannerData.alt" />
+  <button class="img-2" (click)="onNextClick()" [class.disabled]="!canGoNext">›</button>
+  
+  <!-- Page indicator -->
+  <div class="page-indicator">
+    <span class="page-info">{{ currentBanner + 1 }} / {{ totalBanners }}</span>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<header class="header">
+  <div class="background">
+    <div class="item">
+      <img class="component" src="assets/img/common/image-2.png" />
+      <p class="text-wrapper">Hệ thống Đặt Vé Xe Toàn Quốc</p>
+    </div>
+    <div class="container">
+      <div class="mail">
+        <div class="component"><img class="vector" src="assets/img/common/vector-3.svg" /></div>
+        <div class="div">ChuyenXeVui&#64;gmail.com</div>
+      </div>
+      <div class="phone">
+        <div class="component"><img class="img" src="assets/img/common/vector.svg" /></div>
+        <div class="text-wrapper-2">1900 0152</div>
+      </div>
+    </div>
+  </div>
+  <div class="container-2">
+    <div class="logo">
+      <img src="assets/img/common/logo-chuyenxevui.png" alt="ChuyenXeVui Logo" class="logo-image" />
+    </div>
+    <div class="component-wrapper">
+      <div class="component-2">
+        <div class="item-margin">
+          <div class="div-wrapper" [class.active]="isActiveRoute('/') || isActiveRoute('/home')">
+            <a routerLink="/" routerLinkActive="active-link" class="text">TRANG CHỦ</a>
+          </div>
+        </div>
+        <div class="item-margin-3">
+          <div class="component-3" [class.active]="isActiveRoute('/about')">
+            <a routerLink="/about" routerLinkActive="active-link" class="text-wrapper-3">GIỚI THIỆU</a>
+          </div>
+        </div>
+        <div class="item-margin-3">
+          <div class="component-3" [class.active]="isActiveRoute('/bus-companies')">
+            <a routerLink="/bus-companies" routerLinkActive="active-link" class="text-wrapper-3">THÔNG TIN NHÀ XE</a>
+          </div>
+        </div>
+        <div class="item-link-b-n-xe-wrapper">
+          <div class="component-3" [class.active]="isActiveRoute('/bus-stations')">
+            <a routerLink="/bus-stations" routerLinkActive="active-link" class="text-wrapper-3">BẾN XE</a>
+          </div>
+        </div>
+        <div class="item-margin-3">
+          <div class="component-3" [class.active]="isActiveRoute('/routes')">
+            <a routerLink="/routes" routerLinkActive="active-link" class="text-wrapper-3">TUYẾN ĐƯỜNG</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="search-wrapper">
+      <button class="search-button" (click)="onSearchClick()">
+        <img class="search-icon" src="assets/img/common/search.svg" alt="Tìm kiếm" />
+      </button>
+    </div>
+  </div>
+</header>

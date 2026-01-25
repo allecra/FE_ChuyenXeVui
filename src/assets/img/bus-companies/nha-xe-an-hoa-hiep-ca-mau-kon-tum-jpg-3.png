@@ -1,0 +1,10 @@
+<svg width="260" height="170" viewBox="0 0 260 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="260" height="170" rx="10" fill="#40a944"/>
+<svg x="80" y="40" width="100" height="60" viewBox="0 0 100 60">
+<rect width="100" height="40" rx="5" fill="white"/>
+<rect x="10" y="5" width="80" height="30" rx="3" fill="#40a944"/>
+<circle cx="22" cy="50" r="7" fill="#333"/>
+<circle cx="78" cy="50" r="7" fill="#333"/>
+</svg>
+<text x="130" y="130" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold">Sài Gòn - Vũng Tàu</text>
+</svg>

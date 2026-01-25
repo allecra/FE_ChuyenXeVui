@@ -1,0 +1,339 @@
+.bus-stations-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.hero-banner {
+  background: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);
+  padding: 80px 0;
+  text-align: center;
+  color: white;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.content-section {
+  padding: 60px 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.search-filter {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-bottom: 40px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px 50px 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: #2196F3;
+}
+
+.search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2196F3;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #1976D2;
+}
+
+.search-btn img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.filter-options {
+  display: flex;
+  gap: 15px;
+}
+
+.filter-options select {
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.filter-options select:focus {
+  border-color: #2196F3;
+}
+
+.stations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.station-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.station-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.station-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.station-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.station-card:hover .station-image img {
+  transform: scale(1.05);
+}
+
+.operating-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(33, 150, 243, 0.95);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.station-info {
+  padding: 25px;
+}
+
+.station-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.station-details {
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+.detail-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.detail-text {
+  line-height: 1.4;
+}
+
+.facilities {
+  margin-bottom: 25px;
+}
+
+.facilities h4 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.facilities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.facility-tag {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.station-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primary, .btn-secondary {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background: #2196F3;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1976D2;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #2196F3;
+  border: 2px solid #2196F3;
+}
+
+.btn-secondary:hover {
+  background: #2196F3;
+  color: white;
+}
+
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.info-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.info-card h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #2196F3;
+  padding-bottom: 10px;
+}
+
+.info-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.info-card li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #666;
+  position: relative;
+  padding-left: 25px;
+}
+
+.info-card li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #2196F3;
+  font-weight: bold;
+}
+
+.info-card li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 36px;
+  }
+  
+  .search-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-box {
+    min-width: auto;
+  }
+  
+  .filter-options {
+    justify-content: space-between;
+  }
+  
+  .stations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .station-actions {
+    flex-direction: column;
+  }
+  
+  .info-section {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,152 @@
+<div class="routes-page">
+  <div class="hero-banner">
+    <div class="hero-content">
+      <h1>Tuyến Đường Phổ Biến</h1>
+      <p>Khám phá các tuyến đường xe khách trên toàn quốc</p>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="container">
+      <div class="search-filter">
+        <div class="route-search">
+          <div class="search-field">
+            <label>Điểm đi</label>
+            <select>
+              <option>Chọn điểm đi</option>
+              <option>TP.HCM</option>
+              <option>Hà Nội</option>
+              <option>Đà Nẵng</option>
+              <option>Cần Thơ</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>Điểm đến</label>
+            <select>
+              <option>Chọn điểm đến</option>
+              <option>Đà Lạt</option>
+              <option>Nha Trang</option>
+              <option>Hải Phòng</option>
+              <option>Sapa</option>
+            </select>
+          </div>
+          <button class="search-btn">
+            <img src="assets/img/common/search.svg" alt="Search" />
+            Tìm tuyến
+          </button>
+        </div>
+        
+        <div class="filter-tabs">
+          <button class="tab-btn active">Tất cả</button>
+          <button class="tab-btn">Phổ biến</button>
+          <button class="tab-btn">Miền Bắc</button>
+          <button class="tab-btn">Miền Trung</button>
+          <button class="tab-btn">Miền Nam</button>
+        </div>
+      </div>
+
+      <div class="routes-grid">
+        <div class="route-card" *ngFor="let route of routes">
+          <div class="route-header">
+            <div class="route-path">
+              <div class="departure">
+                <span class="city">{{ route.from }}</span>
+              </div>
+              <div class="route-arrow">
+                <div class="arrow-line"></div>
+                <div class="arrow-head">→</div>
+              </div>
+              <div class="destination">
+                <span class="city">{{ route.to }}</span>
+              </div>
+            </div>
+            <div class="popular-badge" *ngIf="route.popular">
+              <span>🔥 Phổ biến</span>
+            </div>
+          </div>
+          
+          <div class="route-info">
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-icon">📏</span>
+                <div class="info-content">
+                  <span class="info-label">Khoảng cách</span>
+                  <span class="info-value">{{ route.distance }}</span>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">⏱️</span>
+                <div class="info-content">
+                  <span class="info-label">Thời gian</span>
+                  <span class="info-value">{{ route.duration }}</span>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">💰</span>
+                <div class="info-content">
+                  <span class="info-label">Giá vé</span>
+                  <span class="info-value">{{ route.price }}</span>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">🚌</span>
+                <div class="info-content">
+                  <span class="info-label">Tần suất</span>
+                  <span class="info-value">{{ route.frequency }}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="companies-section">
+              <h4>Nhà xe phục vụ:</h4>
+              <div class="companies-list">
+                <span class="company-tag" *ngFor="let company of route.companies">
+                  {{ company }}
+                </span>
+              </div>
+            </div>
+            
+            <div class="route-actions">
+              <button class="btn-primary">Đặt vé ngay</button>
+              <button class="btn-secondary">Xem chi tiết</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-section">
+        <div class="tips-card">
+          <h3>💡 Mẹo đặt vé xe khách</h3>
+          <ul>
+            <li>Đặt vé trước 1-2 ngày để có giá tốt nhất</li>
+            <li>Chọn ghế gần cửa sổ để ngắm cảnh</li>
+            <li>Mang theo đồ ăn nhẹ cho chuyến đi dài</li>
+            <li>Kiểm tra thời tiết trước khi đi</li>
+            <li>Chuẩn bị giấy tờ tùy thân</li>
+          </ul>
+        </div>
+        
+        <div class="tips-card">
+          <h3>🎯 Tuyến đường hot nhất</h3>
+          <div class="hot-routes">
+            <div class="hot-route">
+              <span class="route-name">TP.HCM → Đà Lạt</span>
+              <span class="route-stats">1000+ lượt đặt/ngày</span>
+            </div>
+            <div class="hot-route">
+              <span class="route-name">Hà Nội → Hải Phòng</span>
+              <span class="route-stats">800+ lượt đặt/ngày</span>
+            </div>
+            <div class="hot-route">
+              <span class="route-name">TP.HCM → Nha Trang</span>
+              <span class="route-stats">600+ lượt đặt/ngày</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

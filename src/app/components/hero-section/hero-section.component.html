@@ -1,0 +1,48 @@
+<div class="hero-section">
+  <!-- Background Image -->
+  <div class="background-image"></div>
+  
+  <!-- Main Content -->
+  <div class="hero-content">
+    <!-- Search Form Overlay -->
+    <div class="search-overlay">
+      <div class="search-form">
+        <div class="search-field">
+          <div class="field-label">Điểm Khởi Hành</div>
+          <input 
+            type="text" 
+            class="field-input" 
+            placeholder="Chọn Điểm Khởi Hành"
+            [(ngModel)]="searchForm.departure"
+            (click)="onDepartureClick()"
+          />
+        </div>
+        <div class="search-field">
+          <div class="field-label">Điểm Đến</div>
+          <input 
+            type="text" 
+            class="field-input" 
+            placeholder="Chọn Điểm Đến"
+            [(ngModel)]="searchForm.destination"
+            (click)="onDestinationClick()"
+          />
+        </div>
+        <div class="search-field">
+          <div class="field-label">Ngày Khởi Hành</div>
+          <div class="date-input-wrapper">
+            <img class="calendar-icon" src="assets/img/common/calendar.svg" alt="Calendar" />
+            <input 
+              type="date" 
+              class="field-input date-input" 
+              [(ngModel)]="searchForm.departureDate"
+            />
+          </div>
+        </div>
+        <button class="search-button" (click)="onSearch()">
+          <img class="search-icon" src="assets/img/common/search.svg" alt="Search" />
+          <span class="button-text">TÌM CHUYẾN XE</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

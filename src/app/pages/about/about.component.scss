@@ -1,0 +1,416 @@
+.about-page {
+  min-height: 100vh;
+  background: #EEF8CB;
+}
+
+/* Hero Section */
+.hero-section {
+  background: #EEF8CB;
+  padding: 60px 0;
+  min-height: 600px;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+.hero-left {
+  flex: 1;
+  text-align: center;
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 70px;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.hero-title .orange {
+  color: #FF6B35;
+  font-weight: 700;
+}
+
+.hero-title .blue {
+  color: #2196F3;
+  font-weight: 700;
+}
+
+.follow-section p {
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.facebook-icon, .zalo-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.facebook-icon {
+  background: #1877F2;
+}
+
+.zalo-icon {
+  background: #0068FF;
+  color: #FFFFFF;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-banner {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  border: none;
+  outline: none;
+  object-fit: contain;
+}
+
+/* Content Section */
+.content-section {
+  padding: 60px 0;
+  background: #FAFFE7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* System Introduction */
+.system-intro {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.system-intro h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: #FFA901;
+  font-weight: bold;
+}
+
+.system-intro p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Service Cards */
+.service-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.service-card {
+  padding: 30px;
+  border-radius: 15px;
+  color: white;
+  min-height: 200px;
+}
+
+.service-card.green {
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+}
+
+.service-card.stats {
+  background: linear-gradient(135deg, #FFA901 0%, #FF8A50 100%);
+  border: 3px solid #FF6B35;
+}
+
+.service-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.service-card p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.stat-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: white;
+}
+
+.green-text {
+  color: #4CAF50;
+  margin-top: 15px;
+}
+
+/* Why Choose Us */
+.why-choose-us {
+  margin-bottom: 60px;
+}
+
+.why-choose-us h2 {
+  font-size: 32px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.reason-item h4 {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.reason-item p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.center-logo {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.main-logo {
+  height: 80px;
+  width: auto;
+}
+
+/* Customer Focus */
+.customer-focus {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-bottom: 60px;
+}
+
+.red-title {
+  font-size: 32px;
+  color: #E53935;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.customer-focus p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contact Section */
+.contact-section {
+  background: transparent;
+  padding: 60px 40px;
+  margin-bottom: 40px;
+}
+
+.contact-section .red-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.form-submit {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background: #45A049;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .hero-left {
+    flex: 1;
+    text-align: center;
+    padding-right: 0;
+  }
+  
+  .hero-title {
+    font-size: 48px;
+  }
+  
+  .follow-section p {
+    font-size: 18px;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .facebook-icon, .zalo-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
+  }
+  
+  .hero-banner {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .service-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .reasons-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .banner-frame {
+    transform: none;
+  }
+  
+  .contact-section {
+    padding: 40px 20px;
+  }
+  
+  .contact-form {
+    padding: 0 10px;
+  }
+  
+  .customer-focus {
+    padding: 30px 20px;
+  }
+  
+  .red-title {
+    font-size: 28px;
+  }
+}
