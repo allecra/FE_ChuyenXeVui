@@ -1,0 +1,42 @@
+<div class="user-home-container">
+  <div class="welcome-section">
+    <div class="welcome-header">
+      <h1>Chào mừng bạn đến với ChuyenXeVui!</h1>
+      <button class="logout-btn" (click)="logout()" title="Đăng xuất">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Đăng xuất</span>
+      </button>
+    </div>
+    <p *ngIf="currentUser">
+      Xin chào, <strong>{{ currentUser.firstName }} {{ currentUser.lastName }}</strong>
+    </p>
+  </div>
+
+  <div class="features-section">
+    <h2>Tính năng</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚌</div>
+        <h3>Tìm kiếm chuyến xe</h3>
+        <p>Tìm và đặt vé xe khách dễ dàng</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎫</div>
+        <h3>Quản lý vé</h3>
+        <p>Xem và quản lý các vé đã đặt</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Thanh toán</h3>
+        <p>Thanh toán an toàn và nhanh chóng</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Hỗ trợ</h3>
+        <p>Liên hệ với chúng tôi khi cần hỗ trợ</p>
+      </div>
+    </div>
+  </div>
+</div>

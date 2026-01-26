@@ -1,0 +1,20 @@
+<div class="dashboard-container">
+  <h2 class="page-title">Dashboard</h2>
+  
+  <div class="stats-grid">
+    <div *ngFor="let stat of stats" class="stat-card" [style.border-top-color]="stat.color">
+      <div class="stat-icon" [style.color]="stat.color">{{ stat.icon }}</div>
+      <div class="stat-content">
+        <div class="stat-value">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="content-card">
+      <h3>Chào mừng đến với trang quản trị</h3>
+      <p>Đây là trang dashboard của hệ thống quản lý đặt vé xe ChuyenXeVui.</p>
+    </div>
+  </div>
+</div>

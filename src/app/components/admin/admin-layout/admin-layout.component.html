@@ -1,0 +1,17 @@
+<div class="admin-layout">
+  <!-- Header -->
+  <app-admin-header></app-admin-header>
+
+  <div class="admin-body">
+    <!-- Sidebar -->
+    <app-admin-sidebar [collapsed]="sidebarCollapsed"></app-admin-sidebar>
+
+    <!-- Main Content -->
+    <div class="admin-main-content" [class.sidebar-collapsed]="sidebarCollapsed">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <app-admin-footer></app-admin-footer>
+</div>

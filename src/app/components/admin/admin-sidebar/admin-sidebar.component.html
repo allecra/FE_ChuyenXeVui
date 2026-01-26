@@ -1,0 +1,17 @@
+<aside class="admin-sidebar" [class.collapsed]="collapsed">
+  <nav class="sidebar-nav">
+    <ul class="menu-list">
+      <li *ngFor="let item of menuItems" class="menu-item">
+        <a 
+          class="menu-link" 
+          [class.active]="isActive(item.route)"
+          (click)="navigateTo(item.route)"
+          [title]="collapsed ? item.label : ''"
+        >
+          <span class="menu-icon">{{ item.icon }}</span>
+          <span class="menu-label" *ngIf="!collapsed">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
