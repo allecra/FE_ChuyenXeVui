@@ -1,13 +1,20 @@
 .about-page {
   min-height: 100vh;
-  background: #EEF8CB;
+  background: #FAFFE7;
 }
 
 /* Hero Section */
 .hero-section {
-  background: #EEF8CB;
+  background: #EBE9AB;
   padding: 60px 0;
-  min-height: 600px;
+  min-height: 640px;
+  width: 100%;
+}
+
+.hero-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #EBE9AB;
 }
 
 .hero-container {
@@ -16,25 +23,28 @@
   padding: 0 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 45px;
+  min-height: 580px;
 }
 
 .hero-left {
-  flex: 1;
-  text-align: center;
-  padding-right: 0;
+  width: 318px;
+  height: 424px;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-shrink: 0;
 }
 
 .hero-title {
   font-size: 70px;
   font-weight: bold;
-  line-height: 1.1;
+  line-height: 1.2;
   margin-bottom: 30px;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 .hero-title .orange {
@@ -52,12 +62,13 @@
   color: #000000;
   margin-bottom: 15px;
   font-weight: 400;
+  text-align: left;
 }
 
 .social-links {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 15px;
 }
 
@@ -90,7 +101,7 @@
 .hero-right {
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -244,11 +255,9 @@
 /* Customer Focus */
 .customer-focus {
   text-align: center;
-  background: white;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  margin-bottom: 60px;
+  background: transparent;
+  padding: 40px 0;
+  margin-bottom: 20px;
 }
 
 .red-title {
@@ -271,8 +280,8 @@
 /* Contact Section */
 .contact-section {
   background: transparent;
-  padding: 60px 40px;
-  margin-bottom: 40px;
+  padding: 20px 40px 60px 40px;
+  margin-bottom: 10px;
 }
 
 .contact-section .red-title {
@@ -351,10 +360,39 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero-section {
+    min-height: 500px;
+  }
+  
+  .hero-wrapper {
+    max-width: 100%;
+  }
+  
   .hero-container {
     flex-direction: column;
     text-align: center;
     gap: 20px;
+    min-height: 450px;
+    justify-content: center;
+  }
+  
+  .hero-left {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .hero-right {
+    justify-content: center;
+  }
+  
+  .follow-section p {
+    text-align: center;
+  }
+  
+  .social-links {
+    justify-content: center;
   }
   
   .hero-left {
@@ -399,7 +437,8 @@
   }
   
   .contact-section {
-    padding: 40px 20px;
+    padding: 15px 20px 40px 20px;
+    margin-bottom: 5px;
   }
   
   .contact-form {
@@ -407,7 +446,8 @@
   }
   
   .customer-focus {
-    padding: 30px 20px;
+    padding: 30px 0;
+    margin-bottom: 15px;
   }
   
   .red-title {

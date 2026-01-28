@@ -1,15 +1,90 @@
 /* Global Styles - ChuyenXeVui Theme */
+
+/* === FONT VARIABLES === */
+:root {
+  --font-family-primary: "Segoe UI", Helvetica, Arial, sans-serif;
+  --line-height-primary: 1.2;
+  --font-weight-bold: 700;
+  --font-weight-normal: 400;
+  --font-size-title: 24px;
+  --font-size-subtitle: 16px;
+  --font-size-body: 14px;
+}
+
+/* === MIXINS === */
+@mixin font-title {
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: var(--font-size-title) !important;
+  line-height: var(--line-height-primary) !important;
+}
+
+@mixin font-subtitle {
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: var(--font-size-subtitle) !important;
+  line-height: var(--line-height-primary) !important;
+}
+
+@mixin font-body {
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-normal) !important;
+  font-size: var(--font-size-body) !important;
+  line-height: var(--line-height-primary) !important;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-family-primary) !important;
+  line-height: var(--line-height-primary) !important;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.6;
+  font-family: var(--font-family-primary) !important;
+  line-height: var(--line-height-primary) !important;
   color: #333;
   background-color: #FAFFFE;
+}
+
+/* Force font for all elements */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, select, textarea {
+  font-family: var(--font-family-primary) !important;
+  line-height: var(--line-height-primary) !important;
+}
+
+/* === SECTION TITLE STANDARDIZATION === */
+.section-title,
+.slider-section-title,
+.text-wrapper-7 {
+  @include font-title;
+  border-left: 4px solid #40a944 !important;
+  padding: 4px 0 4px 12px !important;
+  margin: 40px 0 10px 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  color: #000000 !important;
+  letter-spacing: 0 !important;
+}
+
+/* COMMENTED OUT - MAY CAUSE CONFLICT
+.reviews-title h2 {
+  @include font-title;
+  border-left: 4px solid #40a944 !important;
+  padding: 4px 0 4px 12px !important;
+  margin: 40px 0 10px 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  color: #000000 !important;
+  letter-spacing: 0 !important;
+  text-transform: lowercase !important;
+}
+*/
+
+/* Override for card titles */
+.orange-card-title {
+  @include font-subtitle;
 }
 
 /* Reset styles for better consistency */
@@ -42,3 +117,14 @@ input:focus, select:focus {
   border-color: #4CAF50;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
 }
+
+/* COMMENTED OUT - MAY CAUSE CONFLICT WITH REVIEWS
+.review-item,
+app-reviews .review-item {
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -o-border-radius: 0 !important;
+}
+*/

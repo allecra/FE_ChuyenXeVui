@@ -4,6 +4,25 @@
   width: 100%;
   padding: 40px 20px;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 0 auto;
   background: #FAFFE7;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1200px) {
+  .content-wrapper {
+    padding: 30px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 15px 8px;
+  }
 }

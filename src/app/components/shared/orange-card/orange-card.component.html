@@ -1,0 +1,32 @@
+<article class="orange-card"
+         [ngClass]="{'layout-text-first': isTextFirst, 'layout-image-first': !isTextFirst}"
+         [style.width.px]="cardWidth"
+         [style.height.px]="cardHeight">
+
+  <!-- Chữ trước (tuyến đường) -->
+  @if (isTextFirst) {
+    <div class="orange-card-content">
+      <h3 class="orange-card-title" [style.color]="titleColor">{{ title }}</h3>
+      @if (subtitle) {
+        <p class="orange-card-subtitle" [style.color]="subtitleColor">{{ subtitle }}</p>
+      }
+    </div>
+  }
+
+  <!-- Khung ảnh 260×170 -->
+  <div class="orange-card-image" [style.height.px]="imageHeight">
+    <img [src]="imageUrl" [alt]="imageAlt || title" />
+  </div>
+
+  <!-- Chữ sau (nhà xe, bến xe) -->
+  @if (!isTextFirst) {
+    <div class="orange-card-content">
+      <h3 class="orange-card-title" [style.color]="titleColor">{{ title }}</h3>
+      @if (subtitle) {
+        <p class="orange-card-subtitle" [style.color]="subtitleColor">{{ subtitle }}</p>
+      } @else {
+        <p class="orange-card-category">NHÀ XE</p>
+      }
+    </div>
+  }
+</article>

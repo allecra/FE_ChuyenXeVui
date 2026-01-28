@@ -1,46 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { OrangeCardComponent } from '../shared/orange-card/orange-card.component';
+import { SliderSectionComponent } from '../shared/slider-section/slider-section.component';
+import { RoutesService, BusRoute } from '../../services/routes.service';
 
 @Component({
   selector: 'app-popular-routes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OrangeCardComponent, SliderSectionComponent],
   templateUrl: './popular-routes.component.html',
   styleUrls: ['./popular-routes.component.scss']
 })
 export class PopularRoutesComponent {
   currentPage = 0;
   itemsPerPage = 4;
-  
-  routes = [
-    {
-      name: 'Sài Gòn – Vũng Tàu',
-      price: '150.000đ',
-      image: 'saigon-vungtau-route.jpg'
-    },
-    {
-      name: 'Sài Gòn- Mũi Né',
-      price: '180.000đ',
-      image: 'saigon-muine-route.jpg'
-    },
-    {
-      name: 'Sài Gòn – Nha Trang',
-      price: '240.000đ',
-      image: 'saigon-nhatrang-route.jpg'
-    },
-    {
-      name: 'Nha Trang – Đà Lạt',
-      price: '200.000đ',
-      image: 'nhatrang-dalat-route.jpg'
-    },
-    {
-      name: 'Bắc Ninh – Hà Nội',
-      price: '80.000đ',
-      image: 'bacninh-hanoi-route.jpg'
-    }
-  ];
+  isMobile = false;
+  routes: BusRoute[] = [];
+
+  constructor(private routesService: RoutesService) {
+    this.routes = this.routesService.getPopularRoutes();
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+  }
 
   get currentRoutes() {
+    // Trên mobile hiển thị tất cả, trên desktop phân trang
+    if (this.isMobile) {
+      return this.routes;
+    }
     const start = this.currentPage * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     return this.routes.slice(start, end);
@@ -51,11 +46,11 @@ export class PopularRoutesComponent {
   }
 
   get canGoPrev() {
-    return this.currentPage > 0;
+    return !this.isMobile && this.currentPage > 0;
   }
 
   get canGoNext() {
-    return this.currentPage < this.totalPages - 1;
+    return !this.isMobile && this.currentPage < this.totalPages - 1;
   }
 
   onPrevClick() {
