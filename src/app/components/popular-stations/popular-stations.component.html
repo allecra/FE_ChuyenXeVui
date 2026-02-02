@@ -1,18 +1,23 @@
-<div class="frame-7"><div class="text-wrapper-7">Bến Xe Phổ Biến</div></div>
-<div class="slider-wrapper">
+<app-slider-section
+  title="Bến xe phổ biến"
+  titleBorderColor="#40a944"
+  [useGridLayout]="true"
+  [canGoPrev]="canGoPrev"
+  [canGoNext]="canGoNext"
+  (prevClick)="onPrevClick()"
+  (nextClick)="onNextClick()">
   <div class="stations-container">
-    <div class="link" *ngFor="let station of currentStations; let i = index" [ngClass]="'link-' + (i + 1)">
-      <div class="station-bg" [style.background-image]="'url(/assets/img/common/' + station.image + ')'"></div>
-      <div class="frame-9">
-        <p class="p">{{ station.name }}</p>
-      </div>
-    </div>
+    <app-orange-card
+      *ngFor="let station of currentStations"
+      layout="image-first"
+      [cardWidth]="260"
+      [cardHeight]="262"
+      [imageHeight]="170"
+      [imageUrl]="'assets/img/bus-stations/' + station.image"
+      [title]="station.name"
+      [subtitle]="station.location"
+      [subtitleColor]="'#666'"
+      [imageAlt]="station.name">
+    </app-orange-card>
   </div>
-  <button class="arrow-circle-left-3" (click)="onPrevClick()" [class.disabled]="!canGoPrev">‹</button>
-  <button class="arrow-circle-right-3" (click)="onNextClick()" [class.disabled]="!canGoNext">›</button>
-  
-  <!-- Page indicator -->
-  <div class="page-indicator">
-    <span class="page-info">{{ currentPage + 1 }} / {{ totalPages }}</span>
-  </div>
-</div>
+</app-slider-section>

@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SliderSectionComponent } from '../shared/slider-section/slider-section.component';
 
 @Component({
   selector: 'app-promotions',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SliderSectionComponent],
   templateUrl: './promotions.component.html',
   styleUrls: ['./promotions.component.scss']
 })
-export class PromotionsComponent {
+export class PromotionsComponent implements OnInit, OnDestroy {
   currentBanner = 0;
+  private autoSlideInterval: any;
+  private autoSlideDelay = 2000; // 2 giây
   
   banners = [
     {
@@ -19,8 +22,20 @@ export class PromotionsComponent {
     {
       image: 'uudai.jpg', 
       alt: 'Ưu đãi nổi bật 2'
+    },
+    {
+      image: 'uudainoibat.jpg',
+      alt: 'Ưu đãi nổi bật 3'
     }
   ];
+
+  ngOnInit() {
+    this.startAutoSlide();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoSlide();
+  }
 
   get currentBannerData() {
     return this.banners[this.currentBanner];
@@ -38,17 +53,57 @@ export class PromotionsComponent {
     return this.currentBanner < this.totalBanners - 1;
   }
 
-  onPrevClick() {
-    if (this.canGoPrev) {
-      this.currentBanner--;
-      console.log('Previous banner:', this.currentBanner);
+  startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, this.autoSlideDelay);
+  }
+
+  stopAutoSlide() {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = null;
     }
   }
 
-  onNextClick() {
-    if (this.canGoNext) {
+  restartAutoSlide() {
+    this.stopAutoSlide();
+    this.startAutoSlide();
+  }
+
+  nextSlide() {
+    if (this.currentBanner < this.totalBanners - 1) {
       this.currentBanner++;
-      console.log('Next banner:', this.currentBanner);
+    } else {
+      this.currentBanner = 0; // Quay về ảnh đầu tiên
     }
+  }
+
+  prevSlide() {
+    if (this.currentBanner > 0) {
+      this.currentBanner--;
+    } else {
+      this.currentBanner = this.totalBanners - 1; // Quay về ảnh cuối cùng
+    }
+  }
+
+  onPrevClick() {
+    this.prevSlide();
+    this.restartAutoSlide(); // Restart auto-slide khi user click
+    console.log('Previous banner:', this.currentBanner);
+  }
+
+  onNextClick() {
+    this.nextSlide();
+    this.restartAutoSlide(); // Restart auto-slide khi user click
+    console.log('Next banner:', this.currentBanner);
+  }
+
+  onBannerHover() {
+    this.stopAutoSlide(); // Dừng auto-slide khi hover
+  }
+
+  onBannerLeave() {
+    this.startAutoSlide(); // Tiếp tục auto-slide khi rời chuột
   }
 }

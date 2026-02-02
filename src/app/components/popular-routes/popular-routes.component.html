@@ -1,19 +1,26 @@
-<div class="frame-4"><div class="text-wrapper-7">Tuyến Đường Phổ Biến</div></div>
-<div class="slider-wrapper">
+<app-slider-section
+  title="Tuyến đường phổ biến"
+  titleBorderColor="#40a944"
+  titleBgColor="#f9ffe7"
+  [tightTitleTop]="true"
+  [useGridLayout]="true"
+  [canGoPrev]="canGoPrev"
+  [canGoNext]="canGoNext"
+  (prevClick)="onPrevClick()"
+  (nextClick)="onNextClick()">
   <div class="routes-container">
-    <div class="link" *ngFor="let route of currentRoutes; let i = index" [ngClass]="'link-' + (i + 1)">
-      <div class="container-5">
-        <p class="text-wrapper-8">{{ route.name }}</p>
-        <div class="text-wrapper-9">{{ route.price }}</div>
-      </div>
-      <div class="nha-xe-an-hoa-hiep" [ngClass]="'nha-xe-an-hoa-hiep-' + (i + 1)" [style.background-image]="'url(/assets/img/home/' + route.image + ')'"></div>
-    </div>
+    <app-orange-card
+      *ngFor="let route of currentRoutes"
+      layout="text-first"
+      [cardWidth]="260"
+      [cardHeight]="286"
+      [imageHeight]="170"
+      [imageUrl]="'/assets/img/home/' + route.image"
+      [title]="route.title"
+      [subtitle]="route.description"
+      [imageAlt]="route.title"
+      titleColor="#28A745"
+      subtitleColor="#666">
+    </app-orange-card>
   </div>
-  <div class="arrow-circle-left" (click)="onPrevClick()" [class.disabled]="!canGoPrev">‹</div>
-  <div class="arrow-circle-right" (click)="onNextClick()" [class.disabled]="!canGoNext">›</div>
-  
-  <!-- Page indicator -->
-  <div class="page-indicator">
-    <span class="page-info">{{ currentPage + 1 }} / {{ totalPages }}</span>
-  </div>
-</div>
+</app-slider-section>

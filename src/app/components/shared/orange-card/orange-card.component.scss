@@ -1,0 +1,175 @@
+/* Card viền cam tái sử dụng: Tuyến đường (260×250, chữ-trước-ảnh-sau) + Nhà xe/Bến xe (260×219, ảnh-trước-chữ-sau) */
+:host {
+  display: block;
+}
+
+.orange-card {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #FF9900;
+  border-radius: 16px;
+  background-color: #FBFFEC;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* === Layout: chữ trước ảnh sau (tuyến đường 260×250) === */
+.orange-card.layout-text-first {
+  padding: 14px 0 0 0;
+
+  .orange-card-content {
+    padding: 0 12px 12px 12px;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+  }
+
+  .orange-card-title {
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .orange-card-image {
+    border-radius: 0 0 13px 13px;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+}
+
+/* === Layout: ảnh trước chữ sau (nhà xe, bến xe 260×219) === */
+.orange-card.layout-image-first {
+  .orange-card-image {
+    border-radius: 13px 13px 0 0;
+    flex-shrink: 0;
+  }
+
+  .orange-card-content {
+    flex: 1;
+    min-height: 49px;
+    padding: 8px 12px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .orange-card-title {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+/* Khung ảnh: luôn 260×imageHeight, object-fit contain */
+.orange-card-image {
+  width: 100%;
+  overflow: hidden;
+  background-color: #FBFFEC;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+}
+
+.orange-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+}
+
+.orange-card-title {
+  margin: 0;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
+  line-height: var(--line-height-primary) !important;
+}
+
+.orange-card-subtitle {
+  margin: 0;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-normal) !important;
+  font-size: 15px;
+  line-height: var(--line-height-primary) !important;
+}
+
+.orange-card-category {
+  margin: 0;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
+  font-size: 14px;
+  line-height: var(--line-height-primary) !important;
+  color: #999;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1200px) {
+  .orange-card {
+    width: 100% !important;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .orange-card {
+    max-width: 100%;
+    min-width: 250px;
+  }
+  
+  .orange-card.layout-text-first {
+    .orange-card-title {
+      font-size: 16px;
+    }
+  }
+  
+  .orange-card.layout-image-first {
+    .orange-card-title {
+      font-size: 14px;
+    }
+  }
+  
+  .orange-card-subtitle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orange-card {
+    min-width: 200px;
+  }
+  
+  .orange-card.layout-text-first {
+    padding: 10px 0 0 0;
+    
+    .orange-card-content {
+      padding: 0 8px 8px 8px;
+    }
+    
+    .orange-card-title {
+      font-size: 14px;
+    }
+  }
+  
+  .orange-card.layout-image-first {
+    .orange-card-content {
+      padding: 6px 8px;
+      min-height: 40px;
+    }
+    
+    .orange-card-title {
+      font-size: 13px;
+    }
+  }
+  
+  .orange-card-subtitle {
+    font-size: 12px;
+  }
+}

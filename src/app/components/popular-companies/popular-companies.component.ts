@@ -1,46 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { OrangeCardComponent } from '../shared/orange-card/orange-card.component';
+import { SliderSectionComponent } from '../shared/slider-section/slider-section.component';
+import { BusCompaniesService, BusCompany } from '../../services/bus-companies.service';
 
 @Component({
   selector: 'app-popular-companies',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, OrangeCardComponent, SliderSectionComponent],
   templateUrl: './popular-companies.component.html',
   styleUrls: ['./popular-companies.component.scss']
 })
 export class PopularCompaniesComponent {
   currentPage = 0;
   itemsPerPage = 4;
-  
-  companies = [
-    {
-      name: 'Nhà xe An Hòa Hiệp',
-      image: 'nha-xe-an-hoa-hiep-ca-mau-kon-tum-jpg.png',
-      type: 'img'
-    },
-    {
-      name: 'Nhà xe Futa Hà Sơn',
-      image: 'image.jpg',
-      type: 'img'
-    },
-    {
-      name: 'Nhà xe Vũ Linh',
-      image: 'nha-xe-vu-linh-limousine-chat-luong-png.png',
-      type: 'bg'
-    },
-    {
-      name: 'Nhà xe Toàn Thắng',
-      image: 'nha-xe-toan-thang-vung-tau-jpg.png',
-      type: 'bg'
-    },
-    {
-      name: 'Nhà xe Phương Trang',
-      image: 'phuong-trang-bus.jpg',
-      type: 'img'
-    }
-  ];
+  isMobile = false;
+  companies: BusCompany[] = [];
+
+  constructor(private busCompaniesService: BusCompaniesService) {
+    this.companies = this.busCompaniesService.getPopularCompanies();
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.innerWidth <= 768;
+  }
 
   get currentCompanies() {
+    // Trên mobile hiển thị tất cả, trên desktop phân trang
+    if (this.isMobile) {
+      return this.companies;
+    }
     const start = this.currentPage * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     return this.companies.slice(start, end);
@@ -51,11 +46,11 @@ export class PopularCompaniesComponent {
   }
 
   get canGoPrev() {
-    return this.currentPage > 0;
+    return !this.isMobile && this.currentPage > 0;
   }
 
   get canGoNext() {
-    return this.currentPage < this.totalPages - 1;
+    return !this.isMobile && this.currentPage < this.totalPages - 1;
   }
 
   onPrevClick() {

@@ -31,6 +31,102 @@
   }
 }
 
+@media (max-width: 768px) {
+  .background {
+    padding: 0.41px 10px 0.4px;
+  }
+  
+  .container-2 {
+    padding: 0px 15px;
+    flex-direction: column;
+    height: auto;
+    gap: 10px;
+  }
+  
+  .logo {
+    width: 200px;
+    height: 50px;
+  }
+  
+  .logo-image {
+    height: 60px;
+    width: 150px;
+  }
+  
+  .component-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .component-2 {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .text,
+  .text-wrapper-3 {
+    font-size: 12px;
+    line-height: 35px;
+  }
+  
+  .search-button {
+    width: 35px;
+    height: 30px;
+  }
+  
+  .search-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .background {
+    display: none; /* Ẩn thanh thông tin trên mobile nhỏ */
+  }
+  
+  .container-2 {
+    padding: 0px 10px;
+    gap: 8px;
+  }
+  
+  .logo {
+    width: 150px;
+    height: 40px;
+  }
+  
+  .logo-image {
+    height: 50px;
+    width: 120px;
+  }
+  
+  .component-2 {
+    gap: 10px;
+  }
+  
+  .text,
+  .text-wrapper-3 {
+    font-size: 11px;
+    line-height: 30px;
+  }
+  
+  .div-wrapper,
+  .component-3 {
+    padding: 0px 8px;
+  }
+  
+  .search-button {
+    width: 30px;
+    height: 25px;
+  }
+  
+  .search-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
 .item {
   gap: 4px;
   display: inline-flex;
@@ -52,12 +148,12 @@
   justify-content: center;
   width: fit-content;
   margin-top: -1.00px;
-  font-family: "Segoe UI-Regular", Helvetica;
-  font-weight: 400;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-normal) !important;
   color: #f9ffe7;
   font-size: 12px;
   letter-spacing: 0;
-  line-height: 16px;
+  line-height: var(--line-height-primary) !important;
   white-space: nowrap;
 }
 
@@ -97,12 +193,12 @@
   width: fit-content;
   margin-top: -1.00px;
   opacity: 0.6;
-  font-family: "Acme-Regular", Helvetica;
-  font-weight: 400;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-normal) !important;
   color: #f9ffe7;
   font-size: 12px;
   letter-spacing: 0;
-  line-height: 16px;
+  line-height: var(--line-height-primary) !important;
   white-space: nowrap;
 }
 
@@ -131,45 +227,49 @@
   width: fit-content;
   margin-top: -1.00px;
   opacity: 0.6;
-  font-family: "Segoe UI-Regular", Helvetica;
-  font-weight: 400;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-normal) !important;
   color: #f9ffe7;
   font-size: 12px;
   letter-spacing: 0;
-  line-height: 16px;
+  line-height: var(--line-height-primary) !important;
   white-space: nowrap;
 }
 
 .container-2 {
   display: flex;
   width: 100%;
-  height: 80px;
+  max-width: 1440px;
+  height: 60px;
   align-items: center;
   justify-content: space-between;
   padding: 0px 170px;
   position: relative;
   z-index: 1001;
   background-color: #F8FFF8;
+  margin: 0 auto;
 }
 
 .logo {
   position: relative;
   width: 280px;
-  height: 80px;
+  height: 60px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .logo-image {
-  height: 70px;
-  width: auto;
-  object-fit: contain;
+  height: 80px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .component-wrapper {
   display: flex;
-  height: 80px;
+  height: 60px;
   align-items: center;
   position: relative;
   flex: 1;
@@ -226,8 +326,8 @@
 .text {
   width: fit-content;
   margin-top: -1.00px;
-  font-family: "Segoe UI-Bold", Helvetica;
-  font-weight: 700;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
   color: #4CAF50;
   font-size: 14px;
   letter-spacing: 0.28px;
@@ -276,8 +376,8 @@
 .text-wrapper-3 {
   width: fit-content;
   margin-top: -1.00px;
-  font-family: "Segoe UI-Bold", Helvetica;
-  font-weight: 700;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
   color: #4CAF50;
   font-size: 14px;
   letter-spacing: 0.28px;
@@ -350,8 +450,8 @@
 }
 
 .header a[routerLink].text {
-  font-family: "Segoe UI-Bold", Helvetica;
-  font-weight: 700;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
   color: #4CAF50;
   font-size: 14px;
   letter-spacing: 0.28px;
@@ -364,8 +464,8 @@
 }
 
 .header a[routerLink].text-wrapper-3 {
-  font-family: "Segoe UI-Bold", Helvetica;
-  font-weight: 700;
+  font-family: var(--font-family-primary) !important;
+  font-weight: var(--font-weight-bold) !important;
   color: #4CAF50;
   font-size: 14px;
   letter-spacing: 0.28px;

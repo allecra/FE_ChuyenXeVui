@@ -1,0 +1,33 @@
+/* Typography Component - Tái sử dụng cho tất cả text elements */
+.typography-element {
+  font-family: var(--font-family-primary) !important;
+  line-height: var(--line-height-primary) !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Font weights */
+.weight-normal {
+  font-weight: var(--font-weight-normal) !important;
+}
+
+.weight-bold {
+  font-weight: var(--font-weight-bold) !important;
+}
+
+/* Font sizes */
+.size-small {
+  font-size: var(--font-size-body) !important; /* 14px */
+}
+
+.size-medium {
+  font-size: var(--font-size-subtitle) !important; /* 16px */
+}
+
+.size-large {
+  font-size: var(--font-size-title) !important; /* 24px */
+}
+
+.size-xlarge {
+  font-size: 32px !important;
+}

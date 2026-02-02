@@ -8,6 +8,18 @@
 html, body {
   margin: 0px;
   height: 100%;
+  font-family: var(--font-family-primary) !important;
+  line-height: var(--line-height-primary) !important;
+}
+
+/* Override reset CSS for font */
+* {
+  font-family: var(--font-family-primary) !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, a, button {
+  font-family: var(--font-family-primary) !important;
+  line-height: var(--line-height-primary) !important;
 }
 
 /* a blue color as a generic focus style */

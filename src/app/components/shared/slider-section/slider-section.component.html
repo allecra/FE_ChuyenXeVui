@@ -1,0 +1,25 @@
+<div class="slider-section">
+  @if (title) {
+    <div class="slider-section-title"
+         [class.tight-top]="tightTitleTop"
+         [style.border-left-color]="titleBorderColor"
+         [style.background-color]="titleBgColor">
+      {{ title }}
+    </div>
+  }
+  <div class="slider-section-row">
+    <button type="button"
+            class="slider-arrow slider-arrow-left"
+            (click)="prevClick.emit()"
+            [class.disabled]="!canGoPrev"
+            aria-label="Trước">‹</button>
+    <div class="slider-section-content" [class.grid-layout]="useGridLayout">
+      <ng-content></ng-content>
+    </div>
+    <button type="button"
+            class="slider-arrow slider-arrow-right"
+            (click)="nextClick.emit()"
+            [class.disabled]="!canGoNext"
+            aria-label="Sau">›</button>
+  </div>
+</div>
