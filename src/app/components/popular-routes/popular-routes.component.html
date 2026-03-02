@@ -9,18 +9,27 @@
   (prevClick)="onPrevClick()"
   (nextClick)="onNextClick()">
   <div class="routes-container">
-    <app-orange-card
-      *ngFor="let route of currentRoutes"
-      layout="text-first"
-      [cardWidth]="260"
-      [cardHeight]="286"
-      [imageHeight]="170"
-      [imageUrl]="'/assets/img/home/' + route.image"
-      [title]="route.title"
-      [subtitle]="route.description"
-      [imageAlt]="route.title"
-      titleColor="#28A745"
-      subtitleColor="#666">
-    </app-orange-card>
+    <div class="route-card" *ngFor="let route of currentRoutes">
+      <!-- Tên tuyến đường và giá -->
+      <div class="route-header">
+        <h3 class="route-title">{{ route.fromLocation }} – {{ route.toLocation }}</h3>
+        <p class="route-price">{{ route.price | number:'1.0-0' }}đ</p>
+      </div>
+      
+      <!-- 1 ảnh duy nhất -->
+      <div class="route-image-container">
+        <img [src]="'/assets/img/home/' + route.image" [alt]="route.fromLocation + ' - ' + route.toLocation" class="route-img" />
+      </div>
+    </div>
   </div>
 </app-slider-section>
+
+<!-- Nút Xem tất cả -->
+<div class="view-all-container">
+  <button class="view-all-button" (click)="navigateToRoutes()">
+    Xem tất cả
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>

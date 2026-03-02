@@ -1,0 +1,63 @@
+<div class="news-detail-page" *ngIf="article">
+  <!-- Back Button -->
+  <div class="back-button-section">
+    <div class="container">
+      <button class="back-button" (click)="goBack()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Quay lại
+      </button>
+    </div>
+  </div>
+
+  <!-- Article Header -->
+  <div class="article-header">
+    <div class="container">
+      <h1 class="article-title">{{ article.title }}</h1>
+      <div class="article-meta">
+        <span class="article-date">{{ formatVietnameseDate(article.publishedDate) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article Content -->
+  <div class="article-content">
+    <div class="container">
+      <!-- Featured Image -->
+      <div class="featured-image">
+        <img [src]="article.image" [alt]="article.title" />
+      </div>
+
+      <!-- Article Body -->
+      <div class="article-body">
+        <p class="lead-paragraph">{{ article.excerpt }}</p>
+        
+        <p>Trong thời đại công nghệ số phát triển như hiện nay, việc đặt vé xe khách trực tuyến đã trở thành xu hướng được nhiều người lựa chọn. Không chỉ tiết kiệm thời gian mà còn mang lại sự tiện lợi tối đa cho hành khách, đặc biệt là trong những dịp cao điểm như lễ, tết hay các kỳ nghỉ dài ngày.</p>
+        
+        <h2>Thông tin chi tiết</h2>
+        <p>Hệ thống đặt vé trực tuyến ChuyenXeVui cung cấp đầy đủ thông tin về các tuyến đường, nhà xe uy tín và giá vé minh bạch. Khách hàng có thể dễ dàng so sánh, lựa chọn và thanh toán một cách nhanh chóng chỉ với vài thao tác đơn giản trên điện thoại hoặc máy tính.</p>
+        
+        <p>Với giao diện thân thiện, dễ sử dụng, hệ thống giúp người dùng tìm kiếm chuyến xe phù hợp theo thời gian, địa điểm và nhu cầu cá nhân. Mọi thông tin về lịch trình, loại xe, tiện ích đi kèm đều được cập nhật đầy đủ và chính xác.</p>
+        
+        <h3>Lợi ích và ưu điểm</h3>
+        <ul>
+          <li>Tiện lợi và nhanh chóng trong việc đặt vé, không cần đến bến xe</li>
+          <li>Giá cả cạnh tranh và nhiều chương trình ưu đãi hấp dẫn</li>
+          <li>Dịch vụ chăm sóc khách hàng 24/7, hỗ trợ tận tình</li>
+          <li>Đa dạng tuyến đường và nhà xe uy tín trên toàn quốc</li>
+          <li>Thanh toán an toàn với nhiều phương thức linh hoạt</li>
+          <li>Tra cứu lịch sử đặt vé và quản lý vé điện tử dễ dàng</li>
+        </ul>
+        
+        <p>Bên cạnh đó, việc đặt vé trực tuyến còn giúp khách hàng chủ động trong việc lên kế hoạch cho chuyến đi. Bạn có thể đặt vé trước nhiều ngày, tránh tình trạng hết vé vào những dịp cao điểm. Đồng thời, hệ thống cũng gửi thông báo nhắc nhở về lịch trình, giúp bạn không bỏ lỡ chuyến xe.</p>
+        
+        <blockquote>
+          "ChuyenXeVui - Hành trình an toàn, tiện lợi và đáng tin cậy cho mọi chuyến đi của bạn."
+        </blockquote>
+        
+        <p>Hãy trải nghiệm dịch vụ đặt vé xe khách trực tuyến ngay hôm nay để cảm nhận sự khác biệt. Với ChuyenXeVui, mọi chuyến đi của bạn sẽ trở nên dễ dàng và thoải mái hơn bao giờ hết. Chúng tôi cam kết mang đến cho khách hàng những trải nghiệm tốt nhất với dịch vụ chất lượng cao và giá cả hợp lý.</p>
+      </div>
+    </div>
+  </div>
+</div>

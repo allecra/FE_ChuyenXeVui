@@ -5,3 +5,79 @@
   justify-content: center;
   min-height: 250px;
 }
+
+
+/* Nút Xem tất cả */
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.view-all-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 32px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  
+  &:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover svg {
+    transform: translateX(5px);
+  }
+}
+
+/* Responsive cho nút Xem tất cả */
+@media (max-width: 768px) {
+  .view-all-container {
+    margin-top: 20px;
+    padding-bottom: 15px;
+  }
+  
+  .view-all-button {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-all-container {
+    margin-top: 16px;
+    padding-bottom: 10px;
+  }
+  
+  .view-all-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

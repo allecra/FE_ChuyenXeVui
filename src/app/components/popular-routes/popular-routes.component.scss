@@ -5,3 +5,183 @@
   justify-content: center;
   min-height: 260px;
 }
+
+/* Viền cam: 260×250 (vùng trong). Padding 16 mỗi bên → content 228px. Tổng card 266×272 để không tràn viền. */
+.route-card {
+  width: 266px; /* 260 + 6 border → content 228 với padding 16 */
+  height: 272px; /* 55+11+168 + 32 padding + 6 border */
+  background: #FAFFE7;
+  border: 3px solid #FFA901;
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(255, 169, 1, 0.3);
+  }
+}
+
+.route-header {
+  width: 228px;
+  height: 55px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  .route-title {
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #28A745;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+  }
+  
+  .route-price {
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #6B4CE6;
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+.route-image-container {
+  width: 228px;
+  height: 168px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.route-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Hiển thị toàn bộ ảnh, không cắt 2 bên */
+  display: block;
+  transition: transform 0.3s ease;
+  object-position: center;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .routes-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .route-card {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+  
+  .route-header {
+    width: 100%;
+    height: auto;
+    
+    .route-title {
+      font-size: 18px;
+    }
+    
+    .route-price {
+      font-size: 16px;
+    }
+  }
+  
+  .route-image-container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 228 / 168;
+  }
+}
+
+
+/* Nút Xem tất cả */
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  padding-bottom: 20px;
+}
+
+.view-all-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 32px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  
+  &:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover svg {
+    transform: translateX(5px);
+  }
+}
+
+/* Responsive cho nút Xem tất cả */
+@media (max-width: 768px) {
+  .view-all-container {
+    margin-top: 30px;
+    padding-bottom: 15px;
+  }
+  
+  .view-all-button {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-all-container {
+    margin-top: 25px;
+    padding-bottom: 10px;
+  }
+  
+  .view-all-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}

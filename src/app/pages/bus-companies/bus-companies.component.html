@@ -20,12 +20,10 @@
           *ngFor="let company of companies"
           layout="image-first"
           [cardWidth]="260"
-          [cardHeight]="269"
+          [cardHeight]="219"
           [imageHeight]="170"
           [imageUrl]="'assets/img/bus-companies/' + company.image"
           [title]="company.name"
-          [subtitle]="company.headquarters"
-          [subtitleColor]="'#666'"
           [imageAlt]="company.name">
         </app-orange-card>
       </div>

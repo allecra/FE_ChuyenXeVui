@@ -11,13 +11,21 @@
       *ngFor="let station of currentStations"
       layout="image-first"
       [cardWidth]="260"
-      [cardHeight]="262"
+      [cardHeight]="219"
       [imageHeight]="170"
       [imageUrl]="'assets/img/bus-stations/' + station.image"
       [title]="station.name"
-      [subtitle]="station.location"
-      [subtitleColor]="'#666'"
       [imageAlt]="station.name">
     </app-orange-card>
   </div>
 </app-slider-section>
+
+<!-- Nút Xem tất cả -->
+<div class="view-all-container">
+  <button class="view-all-button" (click)="navigateToStations()">
+    Xem tất cả
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>

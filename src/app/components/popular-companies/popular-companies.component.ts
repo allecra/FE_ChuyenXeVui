@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { OrangeCardComponent } from '../shared/orange-card/orange-card.component';
 import { SliderSectionComponent } from '../shared/slider-section/slider-section.component';
 import { BusCompaniesService, BusCompany } from '../../services/bus-companies.service';
@@ -17,7 +18,10 @@ export class PopularCompaniesComponent {
   isMobile = false;
   companies: BusCompany[] = [];
 
-  constructor(private busCompaniesService: BusCompaniesService) {
+  constructor(
+    private busCompaniesService: BusCompaniesService,
+    private router: Router
+  ) {
     this.companies = this.busCompaniesService.getPopularCompanies();
     this.checkScreenSize();
   }
@@ -65,6 +69,12 @@ export class PopularCompaniesComponent {
       this.currentPage++;
       console.log('Next companies page:', this.currentPage);
     }
+  }
+
+  navigateToCompanies() {
+    this.router.navigate(['/bus-companies']).then(() => {
+      window.scrollTo(0, 0);
+    });
   }
 
 }
