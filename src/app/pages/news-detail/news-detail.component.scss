@@ -1,0 +1,254 @@
+.news-detail-page {
+  min-height: 100vh;
+  background: white;
+  
+  // Ensure white background extends to footer
+  &::after {
+    content: '';
+    display: block;
+    background: white;
+    width: 100%;
+    height: 100px;
+  }
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Back Button
+.back-button-section {
+  padding: 20px 0;
+  background: white;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  color: #4CAF50;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #4CAF50;
+    color: white;
+    transform: translateX(-5px);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Article Header
+.article-header {
+  padding: 30px 0;
+  background: white;
+}
+
+.article-title {
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 20px 0;
+  line-height: 1.3;
+}
+
+.article-meta {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+.article-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.article-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+// Article Content
+.article-content {
+  padding: 40px 0 60px 0;
+  background: white;
+}
+
+.featured-image {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// Article Body - Styled like Word document
+.article-body {
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  
+  // Paragraphs
+  p {
+    margin: 0 0 20px 0;
+    text-align: justify;
+    text-indent: 30px;
+    
+    &.lead-paragraph {
+      font-size: 20px;
+      font-weight: 600;
+      color: #4CAF50;
+      text-indent: 0;
+      margin-bottom: 30px;
+      padding-left: 20px;
+      border-left: 4px solid #4CAF50;
+    }
+  }
+  
+  // Headings
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #28A745;
+    margin: 40px 0 20px 0;
+    padding-bottom: 10px;
+  }
+  
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin: 30px 0 15px 0;
+  }
+  
+  // Lists
+  ul, ol {
+    margin: 0 0 20px 40px;
+    padding: 0;
+    
+    li {
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+  }
+  
+  ul {
+    list-style-type: disc;
+    
+    li::marker {
+      color: #4CAF50;
+    }
+  }
+  
+  // Blockquote
+  blockquote {
+    margin: 30px 0;
+    padding: 20px 30px;
+    background: white;
+    border-left: 5px solid #4CAF50;
+    border-radius: 8px;
+    font-style: italic;
+    font-size: 18px;
+    color: #28A745;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    
+    &::before {
+      content: '"';
+      font-size: 48px;
+      color: #4CAF50;
+      opacity: 0.3;
+    }
+    
+    &::after {
+      content: '"';
+      font-size: 48px;
+      color: #4CAF50;
+      opacity: 0.3;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .article-title {
+    font-size: 28px;
+  }
+  
+  .article-body {
+    font-size: 15px;
+    
+    p {
+      text-indent: 20px;
+    }
+    
+    h2 {
+      font-size: 24px;
+    }
+    
+    h3 {
+      font-size: 20px;
+    }
+    
+    blockquote {
+      font-size: 16px;
+      padding: 15px 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .article-title {
+    font-size: 24px;
+  }
+  
+  .article-body {
+    font-size: 14px;
+    
+    p {
+      text-indent: 15px;
+    }
+    
+    h2 {
+      font-size: 20px;
+    }
+    
+    h3 {
+      font-size: 18px;
+    }
+  }
+}

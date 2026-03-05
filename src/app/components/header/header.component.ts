@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,10 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent {
   currentRoute: string = '';
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private searchService: SearchService
+  ) {
     // Subscribe to route changes
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -35,25 +39,8 @@ export class HeaderComponent {
   }
 
   onSearchClick() {
-    // Scroll to hero section search panel
-    const heroSection = document.querySelector('.section');
-    if (heroSection) {
-      heroSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'center'
-      });
-      
-      // Focus on first input field after scroll
-      setTimeout(() => {
-        const firstInput = document.querySelector('.overlay') as HTMLElement;
-        if (firstInput) {
-          firstInput.click();
-        }
-      }, 500);
-    }
-    
-    // Alternative: Show search modal or dropdown
-    console.log('Search button clicked - opening search functionality');
+    // Mở search overlay giống nút tìm kiếm màu xanh (sidebar)
+    this.searchService.openSearchOverlay();
   }
 
 }

@@ -16,18 +16,18 @@
 
       <!-- Routes Grid -->
       <div class="routes-grid" *ngIf="!isLoading">
-        <app-orange-card
-          *ngFor="let route of routes"
-          layout="image-first"
-          [cardWidth]="260"
-          [cardHeight]="286"
-          [imageHeight]="170"
-          [imageUrl]="'assets/img/home/' + route.image"
-          [title]="route.title"
-          [subtitle]="route.description"
-          [subtitleColor]="'#666'"
-          [imageAlt]="route.title">
-        </app-orange-card>
+        <div class="route-card" *ngFor="let route of routes">
+          <!-- Tên tuyến đường và giá -->
+          <div class="route-header">
+            <h3 class="route-title">{{ route.fromLocation }} – {{ route.toLocation }}</h3>
+            <p class="route-price">{{ route.price | number:'1.0-0' }}đ</p>
+          </div>
+          
+          <!-- 1 ảnh duy nhất -->
+          <div class="route-image-container">
+            <img [src]="'assets/img/home/' + route.image" [alt]="route.fromLocation + ' - ' + route.toLocation" class="route-img" />
+          </div>
+        </div>
       </div>
 
       <!-- Pagination -->

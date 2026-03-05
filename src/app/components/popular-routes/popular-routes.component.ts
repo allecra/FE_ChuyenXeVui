@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { OrangeCardComponent } from '../shared/orange-card/orange-card.component';
 import { SliderSectionComponent } from '../shared/slider-section/slider-section.component';
 import { RoutesService, BusRoute } from '../../services/routes.service';
@@ -17,7 +18,10 @@ export class PopularRoutesComponent {
   isMobile = false;
   routes: BusRoute[] = [];
 
-  constructor(private routesService: RoutesService) {
+  constructor(
+    private routesService: RoutesService,
+    private router: Router
+  ) {
     this.routes = this.routesService.getPopularRoutes();
     this.checkScreenSize();
   }
@@ -65,5 +69,11 @@ export class PopularRoutesComponent {
       this.currentPage++;
       console.log('Next page:', this.currentPage);
     }
+  }
+
+  navigateToRoutes() {
+    this.router.navigate(['/routes']).then(() => {
+      window.scrollTo(0, 0);
+    });
   }
 }

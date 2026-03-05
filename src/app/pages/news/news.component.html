@@ -1,0 +1,44 @@
+<div class="news-page">
+  <!-- Page Title -->
+  <div class="page-title-section">
+    <div class="container">
+      <h1 class="page-title">TIN TỨC</h1>
+    </div>
+  </div>
+
+  <div class="news-content">
+    <div class="container">
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Đang tải tin tức...</p>
+      </div>
+
+      <!-- News Grid -->
+      <div class="news-grid" *ngIf="!isLoading">
+        <a [routerLink]="['/news', article.id]" class="news-card-link" *ngFor="let article of articles">
+          <app-orange-card
+            layout="image-first"
+            [cardWidth]="260"
+            [cardHeight]="320"
+            [imageHeight]="170"
+            [imageUrl]="article.image"
+            [title]="article.title"
+            [subtitle]="article.excerpt"
+            [subtitleColor]="'#666'"
+            [imageAlt]="article.title">
+          </app-orange-card>
+        </a>
+      </div>
+
+      <!-- Pagination -->
+      <app-pagination
+        *ngIf="totalPages > 1 && !isLoading"
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        [isLoading]="isLoading"
+        (pageChange)="onPageChange($event)">
+      </app-pagination>
+    </div>
+  </div>
+</div>
