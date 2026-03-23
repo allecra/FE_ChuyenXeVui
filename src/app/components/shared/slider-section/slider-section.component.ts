@@ -24,6 +24,8 @@ export class SliderSectionComponent {
   @Input() useGridLayout: boolean = true;
   @Input() canGoPrev: boolean = true;
   @Input() canGoNext: boolean = true;
+  /** 'sides' = mũi tên hai bên nội dung; 'bottom' = mũi tên xuống dưới, trên nút (vd. Xem tất cả) */
+  @Input() arrowsPosition: 'sides' | 'bottom' = 'sides';
   @Output() prevClick = new EventEmitter<void>();
   @Output() nextClick = new EventEmitter<void>();
 }

@@ -89,14 +89,12 @@ export class PromotionsComponent implements OnInit, OnDestroy {
 
   onPrevClick() {
     this.prevSlide();
-    this.restartAutoSlide(); // Restart auto-slide khi user click
-    console.log('Previous banner:', this.currentBanner);
+    this.restartAutoSlide();
   }
 
   onNextClick() {
     this.nextSlide();
-    this.restartAutoSlide(); // Restart auto-slide khi user click
-    console.log('Next banner:', this.currentBanner);
+    this.restartAutoSlide();
   }
 
   onBannerHover() {

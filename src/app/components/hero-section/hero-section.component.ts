@@ -17,17 +17,14 @@ export class HeroSectionComponent {
   };
 
   onSearch() {
-    console.log('Tìm kiếm:', this.searchForm);
-    // Thực hiện logic tìm kiếm ở đây
+    // TODO: Thực hiện logic tìm kiếm (navigate hoặc gọi API)
   }
 
   onDepartureClick() {
-    // Logic để mở dropdown chọn điểm khởi hành
-    console.log('Chọn điểm khởi hành');
+    // TODO: Mở dropdown chọn điểm khởi hành
   }
 
   onDestinationClick() {
-    // Logic để mở dropdown chọn điểm đến
-    console.log('Chọn điểm đến');
+    // TODO: Mở dropdown chọn điểm đến
   }
 }

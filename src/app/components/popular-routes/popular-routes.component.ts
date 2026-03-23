@@ -1,14 +1,13 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { OrangeCardComponent } from '../shared/orange-card/orange-card.component';
 import { SliderSectionComponent } from '../shared/slider-section/slider-section.component';
 import { RoutesService, BusRoute } from '../../services/routes.service';
 
 @Component({
   selector: 'app-popular-routes',
   standalone: true,
-  imports: [CommonModule, OrangeCardComponent, SliderSectionComponent],
+  imports: [CommonModule, SliderSectionComponent],
   templateUrl: './popular-routes.component.html',
   styleUrls: ['./popular-routes.component.scss']
 })
@@ -16,6 +15,7 @@ export class PopularRoutesComponent {
   currentPage = 0;
   itemsPerPage = 4;
   isMobile = false;
+  isTablet = false;
   routes: BusRoute[] = [];
 
   constructor(
@@ -32,14 +32,16 @@ export class PopularRoutesComponent {
   }
 
   private checkScreenSize() {
-    this.isMobile = window.innerWidth <= 768;
+    const w = window.innerWidth;
+    this.isMobile = w <= 480;
+    this.isTablet = w > 480 && w <= 768;
+    this.itemsPerPage = this.isTablet ? 3 : 4;
+    if (this.isMobile) {
+      this.itemsPerPage = 1;
+    }
   }
 
   get currentRoutes() {
-    // Trên mobile hiển thị tất cả, trên desktop phân trang
-    if (this.isMobile) {
-      return this.routes;
-    }
     const start = this.currentPage * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     return this.routes.slice(start, end);
@@ -50,24 +52,22 @@ export class PopularRoutesComponent {
   }
 
   get canGoPrev() {
-    return !this.isMobile && this.currentPage > 0;
+    return this.currentPage > 0;
   }
 
   get canGoNext() {
-    return !this.isMobile && this.currentPage < this.totalPages - 1;
+    return this.currentPage < this.totalPages - 1;
   }
 
   onPrevClick() {
     if (this.canGoPrev) {
       this.currentPage--;
-      console.log('Previous page:', this.currentPage);
     }
   }
 
   onNextClick() {
     if (this.canGoNext) {
       this.currentPage++;
-      console.log('Next page:', this.currentPage);
     }
   }
 

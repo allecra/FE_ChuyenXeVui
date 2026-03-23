@@ -12,7 +12,6 @@ export class SearchService {
 
   // Method để mở search overlay
   openSearchOverlay() {
-    console.log('📢 SearchService: Broadcasting open event');
     this.searchOverlaySubject.next(true);
   }
 

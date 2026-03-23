@@ -16,6 +16,13 @@
     </div>
   </div>
   <div class="container-2">
+    <!-- Hamburger button (chỉ hiện trên tablet/mobile) -->
+    <button class="hamburger-btn" (click)="toggleMobileMenu()" [class.open]="mobileMenuOpen" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <div class="logo">
       <img src="assets/img/common/logo-chuyenxevui.png" alt="ChuyenXeVui Logo" class="logo-image" />
     </div>
@@ -58,5 +65,29 @@
         <img class="search-icon" src="assets/img/common/search.svg" alt="Tìm kiếm" />
       </button>
     </div>
+  </div>
+
+  <!-- Tablet/Mobile: overlay + side menu (panel trái xanh + ô tìm kiếm) -->
+  <div class="side-menu-backdrop" [class.open]="mobileMenuOpen" (click)="closeMobileMenu()" aria-hidden="true"></div>
+  <div class="side-menu-panel" [class.open]="mobileMenuOpen">
+    <div class="side-menu-search">
+      <input
+        type="text"
+        class="side-menu-search-input"
+        placeholder="Tìm kiếm"
+        (keydown.enter)="onSearchFromMenu()"
+      />
+      <button type="button" class="side-menu-search-btn" (click)="onSearchFromMenu()" aria-label="Tìm kiếm">
+        <img src="assets/img/common/search.svg" alt="" class="side-menu-search-icon" />
+      </button>
+    </div>
+    <nav class="side-menu-nav">
+      <a routerLink="/" (click)="closeMobileMenu()" class="side-menu-item" [class.active]="isActiveRoute('/') || isActiveRoute('/home')">Trang chủ</a>
+      <a routerLink="/about" (click)="closeMobileMenu()" class="side-menu-item" [class.active]="isActiveRoute('/about')">Giới thiệu</a>
+      <a routerLink="/bus-companies" (click)="closeMobileMenu()" class="side-menu-item" [class.active]="isActiveRoute('/bus-companies')">Thông tin nhà xe</a>
+      <a routerLink="/bus-stations" (click)="closeMobileMenu()" class="side-menu-item" [class.active]="isActiveRoute('/bus-stations')">Bến xe</a>
+      <a routerLink="/routes" (click)="closeMobileMenu()" class="side-menu-item" [class.active]="isActiveRoute('/routes')">Tuyến đường</a>
+      <a routerLink="/news" (click)="closeMobileMenu()" class="side-menu-item" [class.active]="isActiveRoute('/news')">Tin tức</a>
+    </nav>
   </div>
 </header>

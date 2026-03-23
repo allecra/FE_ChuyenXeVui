@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -258,22 +258,198 @@ import { CommonModule } from '@angular/common';
       }
     }
 
+    /* Tablet: 2 cột cân bằng 50-50, không lệch */
     @media (max-width: 768px) {
+      .reviews-section {
+        padding: 0 16px;
+        margin-top: 24px;
+        min-height: auto;
+      }
+
+      .reviews-title {
+        font-size: 20px;
+        padding: 2px 0 2px 10px;
+        margin-bottom: 8px;
+      }
+
+      .reviews-section-1,
+      .reviews-section-2,
+      .reviews-section-3 {
+        flex-direction: row !important;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
       .section-2-left,
       .section-3-right {
+        flex: 1 1 50%;
+        min-width: 0;
+        max-width: 50%;
         flex-direction: column;
+        gap: 10px;
       }
-      
-      .review-item {
-        height: 180px !important;
+
+      .review-item.saigon,
+      .review-item.vungtau {
+        flex: 1 1 50%;
+        min-width: 0;
+        width: auto !important;
+        max-width: 50% !important;
+        height: 150px !important;
+      }
+
+      .review-item.hanoi,
+      .review-item.nhatrang {
+        flex: 1 1 50%;
+        min-width: 0;
+        width: auto !important;
+        max-width: 50% !important;
+        height: 170px !important;
+      }
+
+      .review-item.dalat,
+      .review-item.quynhon {
+        width: 100% !important;
+        max-width: none !important;
+        height: 80px !important;
+      }
+
+      .review-item.danang,
+      .review-item.phanthiet {
+        width: 100% !important;
+        max-width: none !important;
+        height: 80px !important;
+      }
+
+      .review-overlay {
+        padding: 10px;
+      }
+
+      .review-overlay h3 {
+        font-size: 16px;
+      }
+
+      .review-overlay p {
+        font-size: 11px;
+      }
+    }
+
+    /* Mobile: 50-50 cân bằng, thu nhỏ tương xứng */
+    @media (max-width: 480px) {
+      .reviews-section {
+        padding: 0 12px;
+        margin-top: 20px;
+      }
+
+      .reviews-title {
+        font-size: 18px;
+        padding: 2px 0 2px 8px;
+        margin-bottom: 6px;
+        border-left-width: 3px;
+      }
+
+      .reviews-section-1,
+      .reviews-section-2,
+      .reviews-section-3 {
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .section-2-left,
+      .section-3-right {
+        flex: 1 1 50%;
+        max-width: 50%;
+        gap: 8px;
+      }
+
+      .review-item.saigon,
+      .review-item.vungtau {
+        flex: 1 1 50%;
+        max-width: 50% !important;
+        height: 120px !important;
+      }
+
+      .review-item.hanoi,
+      .review-item.nhatrang {
+        flex: 1 1 50%;
+        max-width: 50% !important;
+        height: 130px !important;
+      }
+
+      .review-item.dalat,
+      .review-item.quynhon,
+      .review-item.danang,
+      .review-item.phanthiet {
+        height: 61px !important;
+      }
+
+      .review-overlay {
+        padding: 8px;
+      }
+
+      .review-overlay h3 {
+        font-size: 14px;
+      }
+
+      .review-overlay p {
+        font-size: 10px;
+      }
+    }
+
+    /* Mobile nhỏ (390px): 50-50, thu nhỏ thêm */
+    @media (max-width: 390px) {
+      .reviews-section {
+        padding: 0 10px;
+        margin-top: 16px;
+      }
+
+      .reviews-title {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+
+      .reviews-section-1,
+      .reviews-section-2,
+      .reviews-section-3 {
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+
+      .section-2-left,
+      .section-3-right {
+        gap: 6px;
+      }
+
+      .review-item.saigon,
+      .review-item.vungtau {
+        height: 100px !important;
+      }
+
+      .review-item.hanoi,
+      .review-item.nhatrang {
+        height: 106px !important;
+      }
+
+      .review-item.dalat,
+      .review-item.quynhon,
+      .review-item.danang,
+      .review-item.phanthiet {
+        height: 50px !important;
+      }
+
+      .review-overlay {
+        padding: 6px;
+      }
+
+      .review-overlay h3 {
+        font-size: 12px;
+      }
+
+      .review-overlay p {
+        font-size: 9px;
       }
     }
   `]
 })
-export class ReviewsComponent implements OnInit {
-
-  ngOnInit() {
-    console.log('🔍 Reviews Component loaded successfully!');
-  }
-
-}
+export class ReviewsComponent {}

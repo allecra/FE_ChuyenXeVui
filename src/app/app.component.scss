@@ -40,6 +40,26 @@ a {
   background-color: #FAFFE7;
 }
 
+/* Tablet: token Figma 768px, #faffe7 */
+@media (min-width: 481px) and (max-width: 768px) {
+  .desktop {
+    max-width: 768px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #faffe7;
+  }
+}
+
+/* Mobile: token Figma 390px, #faffe7 */
+@media (max-width: 480px) {
+  .desktop {
+    max-width: 390px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #faffe7;
+  }
+}
+
 .content-wrapper {
   max-width: 1440px;
   margin: 0 auto;

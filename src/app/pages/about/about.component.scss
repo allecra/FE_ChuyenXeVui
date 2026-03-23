@@ -52,6 +52,11 @@
   font-weight: 700;
 }
 
+.hero-title .green {
+  color: #2e7d32;
+  font-weight: 700;
+}
+
 .hero-title .blue {
   color: #2196F3;
   font-weight: 700;
@@ -358,99 +363,418 @@
   transform: translateY(0);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Tablet: token Figma 768px, tab Giới thiệu */
+@media (min-width: 481px) and (max-width: 768px) {
+  .about-page {
+    background: #faffe7;
+  }
+
   .hero-section {
-    min-height: 500px;
+    min-height: 340px;
+    padding: 0;
   }
-  
+
   .hero-wrapper {
-    max-width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
   }
-  
+
+  .hero-section {
+    background: #f2e989;
+  }
+
   .hero-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 20px;
-    min-height: 450px;
-    justify-content: center;
-  }
-  
-  .hero-left {
-    width: 100%;
-    height: auto;
-    text-align: center;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    gap: 24px;
+    min-height: 340px;
+    height: 340px;
+    padding: 0 16px;
+    max-width: 768px;
+    margin: 0 auto;
   }
-  
-  .hero-right {
-    justify-content: center;
-  }
-  
-  .follow-section p {
-    text-align: center;
-  }
-  
-  .social-links {
-    justify-content: center;
-  }
-  
+
   .hero-left {
-    flex: 1;
-    text-align: center;
-    padding-right: 0;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 45%;
+    height: auto;
+    align-items: flex-start;
+    margin-top: 0;
+    justify-content: center;
   }
-  
+
   .hero-title {
     font-size: 48px;
+    line-height: 56px;
+    margin-bottom: 16px;
   }
-  
+
+  .hero-title .orange {
+    color: #ff8d00;
+  }
+
+  .hero-title .green {
+    color: #2e7d32;
+  }
+
+  .hero-title .blue {
+    color: #0094de;
+  }
+
   .follow-section p {
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 12px;
   }
-  
-  .social-links {
-    justify-content: center;
+
+  .hero-right {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
-  
-  .facebook-icon, .zalo-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 13px;
-  }
-  
+
   .hero-banner {
-    max-width: 100%;
     width: 100%;
+    max-height: 340px;
+    height: 340px;
+    object-fit: cover;
+    object-position: center;
   }
-  
+
+  .content-section {
+    padding: 24px 0 40px;
+    background: #ffffff;
+  }
+
+  .container {
+    padding: 0 16px;
+    max-width: 736px;
+    margin: 0 auto;
+  }
+
+  .system-intro {
+    margin-bottom: 32px;
+    text-align: left;
+  }
+
+  .system-intro h2 {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 16px;
+  }
+
+  .system-intro p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #333;
+    max-width: 100%;
+    margin: 0;
+  }
+
   .service-cards {
     grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
   }
-  
+
+  .service-card {
+    padding: 20px;
+    border-radius: 15px;
+    min-height: auto;
+  }
+
+  .service-card.green {
+    background: #018506;
+    border: 3px solid #0094de;
+  }
+
+  .service-card.stats {
+    background: #45db00;
+    border: 3px solid #00b3db;
+  }
+
+  .service-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .service-card p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .why-choose-us {
+    margin-bottom: 40px;
+  }
+
+  .why-choose-us h2 {
+    font-size: 24px;
+    text-align: left;
+    margin-bottom: 24px;
+  }
+
+  .reasons-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .reason-item h4 {
+    font-size: 18px;
+    color: #ff8d00;
+  }
+
+  .reason-item p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .customer-focus {
+    padding: 24px 0;
+    text-align: left;
+  }
+
+  .red-title {
+    font-size: 24px;
+    color: #ff8d00;
+    text-align: left;
+  }
+
+  .contact-section {
+    padding: 20px 16px 40px;
+  }
+
+  .form-group label {
+    font-size: 16px;
+  }
+
+  .form-input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #dddddd;
+    box-shadow: inset 0 1px 2px 1px rgba(0,0,0,0.1);
+  }
+
+  .submit-btn {
+    width: 232px;
+    height: 48px;
+    font-size: 20px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* Mobile (≤480px) */
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: auto;
+    padding: 0;
+    background: #f2e989;
+  }
+
+  .hero-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 220px;
+    padding: 16px;
+  }
+
+  .hero-left {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 48%;
+    height: auto;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .follow-section p {
+    font-size: 13px;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  .social-links {
+    justify-content: flex-start;
+  }
+
+  .facebook-icon, .zalo-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 12px;
+  }
+
+  .hero-right {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .hero-banner {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Content */
+  .content-section {
+    padding: 24px 0 40px;
+    background: #ffffff;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .system-intro {
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .system-intro h2 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .system-intro p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* Service Cards - 1 cột */
+  .service-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .service-card {
+    padding: 20px;
+    border-radius: 12px;
+    min-height: auto;
+  }
+
+  .service-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .service-card p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .stat-number {
+    font-size: 28px;
+  }
+
+  .stat-label {
+    font-size: 15px;
+  }
+
+  /* Why Choose Us */
+  .why-choose-us {
+    margin-bottom: 32px;
+  }
+
+  .why-choose-us h2 {
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
   .reasons-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-  
-  .banner-frame {
-    transform: none;
+
+  .reason-item h4 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
   }
-  
-  .contact-section {
-    padding: 15px 20px 40px 20px;
-    margin-bottom: 5px;
+
+  .reason-item p {
+    font-size: 14px;
+    line-height: 1.6;
   }
-  
-  .contact-form {
-    padding: 0 10px;
-  }
-  
+
+  /* Customer Focus */
   .customer-focus {
-    padding: 30px 0;
-    margin-bottom: 15px;
+    padding: 20px 0;
+    text-align: left;
+    margin-bottom: 10px;
   }
-  
+
   .red-title {
-    font-size: 28px;
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+
+  .customer-focus p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Contact Form */
+  .contact-section {
+    padding: 16px 0 40px;
+  }
+
+  .contact-section .red-title {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .form-input {
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+  }
+
+  .form-textarea {
+    min-height: 100px;
+  }
+
+  .form-submit {
+    margin-top: 20px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    padding: 0;
   }
 }

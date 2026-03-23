@@ -24,7 +24,7 @@
 }
 
 .slider-section-title.tight-top {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 /* Hàng: [mũi tên trái] [khoảng cách] [nội dung] [khoảng cách] [mũi tên phải] — mũi tên ngoài khung, không chèn vào card */
@@ -107,6 +107,36 @@
   background-color: #cccccc;
 }
 
+/* Mũi tên đặt dưới nội dung, trên nút (vd. Xem tất cả) */
+.slider-section-row-content-only {
+  padding: 0 20px;
+}
+
+.slider-arrows-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.slider-arrow-bottom {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+}
+
+.slider-arrow-bottom:hover:not(.disabled) {
+  transform: scale(1.1);
+}
+
+.slider-arrow-bottom.disabled:hover {
+  transform: none;
+}
+
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 1200px) {
   .slider-section-row {
@@ -157,7 +187,7 @@
   .slider-section-content.grid-layout ::ng-deep .routes-container,
   .slider-section-content.grid-layout ::ng-deep .companies-container,
   .slider-section-content.grid-layout ::ng-deep .stations-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
 }
