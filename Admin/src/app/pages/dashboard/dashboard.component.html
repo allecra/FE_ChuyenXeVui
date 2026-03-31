@@ -1,0 +1,260 @@
+<div class="dashboard">
+  <div class="page-header">
+    <h1 class="page-title">Tổng quan</h1>
+    <p class="page-sub">Tổng quan hoạt động hệ thống trong thời gian thực.</p>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stats-grid">
+    <div class="stat-card stat-card--green">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div class="stat-card__body">
+        <div class="stat-card__label">TỔNG DOANH THU</div>
+        <div class="stat-card__value">{{ stats[0].value }}</div>
+        <div class="stat-card__change up">↑ {{ stats[0].change }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card stat-card--blue">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+        </svg>
+      </div>
+      <div class="stat-card__body">
+        <div class="stat-card__label">TỔNG GIAO DỊCH</div>
+        <div class="stat-card__value">{{ stats[1].value }}</div>
+        <div class="stat-card__change up">↑ {{ stats[1].change }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card stat-card--orange">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+          <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+      </div>
+      <div class="stat-card__body">
+        <div class="stat-card__label">NHÀ XE MỚI</div>
+        <div class="stat-card__value">{{ stats[2].value }}</div>
+        <div class="stat-card__change up">↑ {{ stats[2].change }}</div>
+      </div>
+    </div>
+
+    <div class="stat-card stat-card--purple">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="stat-card__body">
+        <div class="stat-card__label">KHÁCH HÀNG MỚI</div>
+        <div class="stat-card__value">{{ stats[3].value }}</div>
+        <div class="stat-card__change up">↑ {{ stats[3].change }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts row 2: Dual line chart + User bar -->
+  <div class="charts-row">
+
+    <!-- Biểu đồ đường: Doanh thu + Số vé -->
+    <div class="chart-card chart-card--wide">
+      <div class="chart-card__header">
+        <span class="chart-card__title">Doanh thu & Lượt thanh toán (7 ngày qua)</span>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-dot" style="background:#22c55e"></span>Doanh thu</span>
+          <span class="legend-item"><span class="legend-dot" style="background:#f97316"></span>Lượt thanh toán</span>
+        </div>
+      </div>
+      @if (chartLoading) {
+        <div style="text-align:center;padding:40px;color:#9ca3af">Đang tải...</div>
+      } @else {
+        <div class="line-chart">
+          <div class="line-chart__area">
+            <svg viewBox="0 0 480 180" preserveAspectRatio="none" class="line-chart__svg">
+              <defs>
+                <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#22c55e" stop-opacity="0.2"/>
+                  <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="tixGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#f97316" stop-opacity="0.15"/>
+                  <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- Revenue area -->
+              <path [attr.d]="revAreaPath" fill="url(#revGrad)" />
+              <!-- Revenue line -->
+              <polyline [attr.points]="revLinePoints" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linejoin="round" />
+              <!-- Revenue dots -->
+              @for (val of revenueByDay; track $index) {
+                <circle [attr.cx]="$index * 80" [attr.cy]="170 - getRevH(val)" r="4" fill="#22c55e" />
+              }
+              <!-- Payments line -->
+              <polyline [attr.points]="pmtLinePoints" fill="none" stroke="#f97316" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5,3" />
+              <!-- Payments dots -->
+              @for (val of paymentsByDay; track $index) {
+                <circle [attr.cx]="$index * 80" [attr.cy]="170 - getPmtH(val)" r="3.5" fill="#f97316" />
+              }
+            </svg>
+            <div class="line-chart__x-axis">
+              @for (day of chartDays; track day) {
+                <span>{{ day }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Biểu đồ thanh toán theo trạng thái -->
+    <div class="chart-card">
+      <div class="chart-card__header">
+        <span class="chart-card__title">Giao dịch theo trạng thái</span>
+      </div>
+
+      <div class="donut-container">
+        <svg viewBox="0 0 100 100" class="donut-svg" (mouseleave)="hoveredSlice = null">
+          <!-- Nền xám -->
+          <circle cx="50" cy="50" r="35" fill="none" stroke="#f3f4f6" stroke-width="14"/>
+          <!-- Các slice dùng path để không bị overlap -->
+          @for (s of providerStats; track s.name; let i = $index) {
+            <path
+              [attr.d]="getSlicePath(i)"
+              [attr.fill]="s.color"
+              [attr.opacity]="hoveredSlice === null || hoveredSlice === i ? 1 : 0.5"
+              style="cursor:pointer; transition: opacity 0.2s"
+              (mouseenter)="hoveredSlice = i"
+            />
+          }
+          <!-- Text giữa -->
+          <text x="50" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a1a">
+            {{ donutTotal }}
+          </text>
+          <text x="50" y="58" text-anchor="middle" font-size="7" fill="#9ca3af">Tổng</text>
+        </svg>
+
+        <!-- Tooltip -->
+        @if (hoveredSlice !== null && providerStats[hoveredSlice]) {
+          <div class="donut-tooltip">
+            <span class="donut-tooltip__dot" [style.background]="providerStats[hoveredSlice].color"></span>
+            <span>{{ providerStats[hoveredSlice].name }}</span>
+            <strong>{{ providerStats[hoveredSlice].value }}</strong>
+            <span class="donut-tooltip__pct">({{ getSlicePct(hoveredSlice) }}%)</span>
+          </div>
+        }
+      </div>
+
+      <!-- Legend -->
+      <div class="donut-legend">
+        @for (s of providerStats; track s.name; let i = $index) {
+          <div class="donut-legend__item" (mouseenter)="hoveredSlice = i" (mouseleave)="hoveredSlice = null">
+            <span class="donut-legend__dot" [style.background]="s.color"></span>
+            <span class="donut-legend__label">{{ s.name }}</span>
+            <span class="donut-legend__val">{{ s.value }} <span class="donut-legend__pct">({{ getSlicePct(i) }}%)</span></span>
+          </div>
+        }
+        @if (providerStats.length === 0) {
+          <p class="text-muted" style="text-align:center;padding:12px">Chưa có dữ liệu</p>
+        }
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tables row -->
+  <div class="tables-row">
+    <!-- Recent companies -->
+    <div class="table-card">
+      <div class="table-card__header">
+        <span class="table-card__title">Nhà xe mới đăng ký</span>
+      <a routerLink="/bus-companies" class="table-card__link">Xem tất cả nhà xe →</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>TÊN NHÀ XE</th>
+            <th>NGÀY THAM GIA</th>
+            <th>TRẠNG THÁI</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loadingCompanies) {
+            <tr><td colspan="3" class="loading-cell">Đang tải...</td></tr>
+          } @else if (recentCompanies.length === 0) {
+            <tr><td colspan="3" class="empty-cell">Chưa có dữ liệu</td></tr>
+          } @else {
+            @for (c of recentCompanies; track c.id) {
+              <tr>
+                <td>
+                  <div class="company-name">
+                    <div class="avatar-sm">{{ getInitials(c.company_name || c.companyName) }}</div>
+                    <span>{{ c.company_name || c.companyName }}</span>
+                  </div>
+                </td>
+                <td class="text-muted">{{ formatDate(c.created_at || c.createdAt) }}</td>
+                <td>
+                  @if (c.status) {
+                    <span class="badge" [ngClass]="getStatusClass(c.status)">{{ getStatusLabel(c.status) }}</span>
+                  } @else {
+                    <span class="badge badge--active">Hoạt động</span>
+                  }
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Recent users -->
+    <div class="table-card">
+      <div class="table-card__header">
+        <span class="table-card__title">Khách hàng mới</span>
+        <a routerLink="/users" class="table-card__link">Xem tất cả khách hàng →</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>KHÁCH HÀNG</th>
+            <th>NGUỒN</th>
+            <th>THAO TÁC</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loadingUsers) {
+            <tr><td colspan="3" class="loading-cell">Đang tải...</td></tr>
+          } @else if (recentUsers.length === 0) {
+            <tr><td colspan="3" class="empty-cell">Chưa có dữ liệu</td></tr>
+          } @else {
+            @for (u of recentUsers; track u.id) {
+              <tr>
+                <td>
+                  <div class="company-name">
+                    <div class="avatar-sm">{{ getInitials((u.firstName || u.first_name || '') + ' ' + (u.lastName || u.last_name || '')) }}</div>
+                    <div>
+                      <div>{{ u.firstName || u.first_name }} {{ u.lastName || u.last_name }}</div>
+                      <div class="text-muted text-xs">{{ u.email }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-muted">Website</td>
+                <td>
+                  <a [routerLink]="['/users']" class="link-action">Xem chi tiết</a>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

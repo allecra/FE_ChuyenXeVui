@@ -1,0 +1,148 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Quản lý Thanh toán</h1>
+      <p class="page-sub">Theo dõi và quản lý tất cả giao dịch thanh toán trên hệ thống.</p>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div class="stat-card__info">
+        <div class="stat-card__label">TỔNG DOANH THU</div>
+        <div class="stat-card__value">{{ formatCurrency(totalRevenue) }}</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+        </svg>
+      </div>
+      <div class="stat-card__info">
+        <div class="stat-card__label">TỔNG GIAO DỊCH</div>
+        <div class="stat-card__value">{{ totalCount }}</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="stat-card__info">
+        <div class="stat-card__label">CHỜ XỬ LÝ</div>
+        <div class="stat-card__value">{{ pendingCount }}</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="stat-card__info">
+        <div class="stat-card__label">TỔNG HIỂN THỊ</div>
+        <div class="stat-card__value">{{ totalElements }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-row">
+    <select class="filter-select" [(ngModel)]="filterStatus" (ngModelChange)="onFilterChange()">
+      <option value="">Tất cả trạng thái</option>
+      <option value="PENDING">Chờ xử lý</option>
+      <option value="COMPLETED">Thành công</option>
+      <option value="FAILED">Thất bại</option>
+      <option value="REFUNDED">Đã hoàn</option>
+      <option value="CANCELLED">Đã hủy</option>
+    </select>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card" (click)="openDropdownId = null">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>MÃ GIAO DỊCH</th>
+          <th>NHÀ CUNG CẤP</th>
+          <th>SỐ TIỀN</th>
+          <th>TRẠNG THÁI</th>
+          <th>NGÀY TẠO</th>
+          <th>NGÀY THANH TOÁN</th>
+          <th>USER ID</th>
+          <th>THAO TÁC</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (loading) {
+          <tr><td colspan="7" class="state-cell"><span class="spinner"></span> Đang tải...</td></tr>
+        } @else if (payments.length === 0) {
+          <tr><td colspan="7" class="state-cell">Không có dữ liệu</td></tr>
+        } @else {
+          @for (p of payments; track p.id) {
+            <tr>
+              <td>
+                <div class="txn-id">{{ getField(p, 'transactionId', 'transaction_id') || '#' + p.id }}</div>
+                <div class="text-muted text-xs">ID: {{ p.id }}</div>
+              </td>
+              <td>
+                <span class="provider-tag" [ngClass]="'provider-' + (p.provider || 'other').toLowerCase()">
+                  {{ p.provider || '—' }}
+                </span>
+              </td>
+              <td class="amount">{{ formatCurrency(p.amount) }}</td>
+              <td>
+                <span class="badge" [ngClass]="getStatusClass(p.status)">{{ getStatusLabel(p.status) }}</span>
+              </td>
+              <td class="text-muted">{{ formatDate(getField(p, 'createdAt', 'created_at')) }}</td>
+              <td class="text-muted">{{ formatDate(getField(p, 'paidAt', 'paid_at')) }}</td>
+              <td class="text-muted">{{ getField(p, 'userId', 'user_id') || '—' }}</td>
+              <td>
+                <div class="status-wrapper" [class.open]="openDropdownId === p.id">
+                  <button class="badge" [ngClass]="getStatusClass(p.status)"
+                    (click)="toggleDropdown(p.id); $event.stopPropagation()">
+                    {{ getStatusLabel(p.status) }}
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:4px">
+                      <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                  </button>
+                  @if (openDropdownId === p.id) {
+                    <div class="status-dropdown">
+                      @for (opt of statusOptions; track opt.value) {
+                        <button class="status-dropdown__item" [class.active]="opt.value === p.status"
+                          (click)="updateStatus(p, opt.value); openDropdownId = null">
+                          <span class="status-dot" [style.background]="opt.color"></span>
+                          {{ opt.label }}
+                        </button>
+                      }
+                    </div>
+                  }
+                </div>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <span class="pagination__info">Hiển thị {{ payments.length }} / {{ totalElements }} giao dịch</span>
+      <div class="pagination__pages">
+        <button class="page-btn" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">‹</button>
+        @for (p of pages; track $index) {
+          @if (p === -1) { <span class="page-ellipsis">...</span> }
+          @else { <button class="page-btn" [class.page-btn--active]="p === currentPage" (click)="goToPage(p)">{{ p + 1 }}</button> }
+        }
+        <button class="page-btn" (click)="goToPage(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">›</button>
+      </div>
+    </div>
+  </div>
+</div>

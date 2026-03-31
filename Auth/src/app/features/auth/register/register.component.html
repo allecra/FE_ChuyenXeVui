@@ -1,0 +1,207 @@
+<app-header />
+
+<main class="page">
+  <div class="card">
+    <!-- Logo icon -->
+    <div class="card__icon">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#f97316"/>
+        <path d="M12 16h16M12 20h16M12 24h12" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="24" y="22" width="8" height="6" rx="1" fill="white" opacity="0.9"/>
+      </svg>
+    </div>
+
+    <h1 class="card__title">Đăng ký tài khoản</h1>
+    <p class="card__subtitle">Tham gia cộng đồng ChuyenXeVui ngay hôm nay</p>
+
+    <!-- Alert messages -->
+    @if (successMsg) {
+      <div class="alert alert--success">{{ successMsg }}</div>
+    }
+    @if (errorMsg) {
+      <div class="alert alert--error">{{ errorMsg }}</div>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Họ + Tên (2 cột) -->
+      <div class="row-2">
+        <div class="field" [class.field--error]="f['firstName'].invalid && f['firstName'].touched">
+          <label class="field__label" for="firstName">Họ</label>
+          <div class="field__input-wrap">
+            <span class="field__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            <input
+              id="firstName"
+              type="text"
+              class="field__input"
+              placeholder="Nguyễn"
+              formControlName="firstName"
+              autocomplete="family-name"
+            />
+          </div>
+          @if (f['firstName'].errors?.['required'] && f['firstName'].touched) {
+            <span class="field__error">Vui lòng nhập họ</span>
+          }
+        </div>
+
+        <div class="field" [class.field--error]="f['lastName'].invalid && f['lastName'].touched">
+          <label class="field__label" for="lastName">Tên</label>
+          <div class="field__input-wrap">
+            <span class="field__icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            <input
+              id="lastName"
+              type="text"
+              class="field__input"
+              placeholder="Văn A"
+              formControlName="lastName"
+              autocomplete="given-name"
+            />
+          </div>
+          @if (f['lastName'].errors?.['required'] && f['lastName'].touched) {
+            <span class="field__error">Vui lòng nhập tên</span>
+          }
+        </div>
+      </div>
+
+      <!-- Số điện thoại -->
+      <div class="field" [class.field--error]="f['phone'].invalid && f['phone'].touched">
+        <label class="field__label" for="phone">Số điện thoại</label>
+        <div class="field__input-wrap">
+          <span class="field__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          <input
+            id="phone"
+            type="tel"
+            class="field__input"
+            placeholder="090x xxx xxx"
+            formControlName="phone"
+            autocomplete="tel"
+          />
+        </div>
+        @if (f['phone'].errors?.['required'] && f['phone'].touched) {
+          <span class="field__error">Vui lòng nhập số điện thoại</span>
+        }
+        @if (f['phone'].errors?.['pattern'] && f['phone'].touched) {
+          <span class="field__error">Số điện thoại không hợp lệ</span>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="field" [class.field--error]="f['email'].invalid && f['email'].touched">
+        <label class="field__label" for="email">Email</label>
+        <div class="field__input-wrap">
+          <span class="field__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </span>
+          <input
+            id="email"
+            type="email"
+            class="field__input"
+            placeholder="email@example.com"
+            formControlName="email"
+            autocomplete="email"
+          />
+        </div>
+        @if (f['email'].errors?.['required'] && f['email'].touched) {
+          <span class="field__error">Vui lòng nhập email</span>
+        }
+        @if (f['email'].errors?.['email'] && f['email'].touched) {
+          <span class="field__error">Email không đúng định dạng</span>
+        }
+      </div>
+
+      <!-- Mật khẩu -->
+      <div class="field" [class.field--error]="f['password'].invalid && f['password'].touched">
+        <label class="field__label" for="password">Mật khẩu</label>
+        <div class="field__input-wrap">
+          <span class="field__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </span>
+          <input
+            id="password"
+            type="password"
+            class="field__input"
+            placeholder="••••••••"
+            formControlName="password"
+            autocomplete="new-password"
+          />
+        </div>
+        @if (f['password'].errors?.['required'] && f['password'].touched) {
+          <span class="field__error">Vui lòng nhập mật khẩu</span>
+        }
+        @if (f['password'].errors?.['minlength'] && f['password'].touched) {
+          <span class="field__error">Mật khẩu phải có ít nhất 6 ký tự</span>
+        }
+      </div>
+
+      <!-- Xác nhận mật khẩu -->
+      <div class="field" [class.field--error]="(f['confirmPassword'].invalid || form.errors?.['passwordMismatch']) && f['confirmPassword'].touched">
+        <label class="field__label" for="confirmPassword">Xác nhận mật khẩu</label>
+        <div class="field__input-wrap">
+          <span class="field__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            </svg>
+          </span>
+          <input
+            id="confirmPassword"
+            type="password"
+            class="field__input"
+            placeholder="••••••••"
+            formControlName="confirmPassword"
+            autocomplete="new-password"
+          />
+        </div>
+        @if (form.errors?.['passwordMismatch'] && f['confirmPassword'].touched) {
+          <span class="field__error">Mật khẩu xác nhận không khớp</span>
+        }
+      </div>
+
+      <!-- Terms -->
+      <div class="terms" [class.terms--error]="f['agreeTerms'].invalid && f['agreeTerms'].touched">
+        <label class="terms__label">
+          <input type="checkbox" formControlName="agreeTerms" class="terms__checkbox" />
+          <span class="terms__text">
+            Tôi đồng ý với <a href="#" class="terms__link">Điều khoản &amp; Điều kiện</a> và chính sách bảo mật của ChuyenXeVui.
+          </span>
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-submit" [disabled]="loading">
+        @if (loading) {
+          <span class="spinner"></span>
+        } @else {
+          Đăng ký
+        }
+      </button>
+
+      <p class="login-link">
+        Đã có tài khoản? <a routerLink="/login" class="login-link__anchor">Đăng nhập</a>
+      </p>
+
+    </form>
+  </div>
+</main>
+
+<app-footer />

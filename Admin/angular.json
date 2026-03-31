@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "projects": {
+    "chuyenxevui-admin": {
+      "projectType": "application",
+      "schematics": { "@schematics/angular:component": { "style": "css", "standalone": true } },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/chuyenxevui-admin",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.json",
+            "assets": [],
+            "styles": ["src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": { "outputHashing": "all" },
+            "development": { "optimization": false, "sourceMap": true }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": { "buildTarget": "chuyenxevui-admin:build:production" },
+            "development": { "buildTarget": "chuyenxevui-admin:build:development" }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "ac1a9da3-2576-43cf-8326-a5779ab05759"
+  }
+}

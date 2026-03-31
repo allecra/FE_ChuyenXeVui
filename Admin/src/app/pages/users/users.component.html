@@ -1,0 +1,147 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Quản lý Khách hàng</h1>
+      <p class="page-sub">Quản lý và xem tất cả khách hàng đã đăng ký trong hệ thống.</p>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <div class="search-bar__input-wrap">
+      <svg class="search-bar__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        type="text"
+        class="search-bar__input"
+        placeholder="Tìm kiếm theo tên, email hoặc mã khách hàng..."
+        [(ngModel)]="keyword"
+        (ngModelChange)="onSearch()"
+      />
+    </div>
+    <button class="btn-filter">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+      </svg>
+      Lọc
+    </button>
+  </div>
+
+  <div class="table-card">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>MÃ KH</th>
+          <th>TÊN KHÁCH HÀNG</th>
+          <th>EMAIL</th>
+          <th>TRẠNG THÁI</th>
+          <th>NGÀY TẠO</th>
+          <th>THAO TÁC</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (loading) {
+          <tr><td colspan="6" class="state-cell"><span class="spinner"></span> Đang tải...</td></tr>
+        } @else if (users.length === 0) {
+          <tr><td colspan="6" class="state-cell">Không có dữ liệu</td></tr>
+        } @else {
+          @for (u of users; track u.id) {
+            <tr>
+              <td class="user-id">#CUST-{{ padId(u.id) }}</td>
+              <td>
+                <div class="user-name">
+                  <div class="avatar">{{ getInitials(u.full_name || u.fullName || u.email) }}</div>
+                  <span>{{ getDisplayName(u) }}</span>
+                </div>
+              </td>
+              <td class="text-muted">{{ u.email }}</td>
+              <td>
+                <span class="badge" [ngClass]="getStatusClass(u.status)">{{ getStatusLabel(u.status) }}</span>
+              </td>
+              <td class="text-muted">{{ formatDate(u.created_at || u.createdAt) }}</td>
+              <td>
+                <div class="actions">
+                  <button class="action-btn action-btn--edit" title="Chỉnh sửa" (click)="openEdit(u)">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                  </button>
+                  <button class="action-btn action-btn--delete" title="{{ u.status === 'ACTIVE' ? 'Khóa' : 'Mở khóa' }}" (click)="blockUser(u)">
+                    @if (u.status === 'ACTIVE') {
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 9.9-1"/>
+                      </svg>
+                    } @else {
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                      </svg>
+                    }
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <span class="pagination__info">Hiển thị {{ users.length }} trên tổng số {{ totalElements }} khách hàng</span>
+      <div class="pagination__pages">
+        <button class="page-btn" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">‹</button>
+        @for (p of pages; track $index) {
+          @if (p === -1) {
+            <span class="page-ellipsis">...</span>
+          } @else {
+            <button class="page-btn" [class.page-btn--active]="p === currentPage" (click)="goToPage(p)">
+              {{ p + 1 }}
+            </button>
+          }
+        }
+        <button class="page-btn" (click)="goToPage(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal chỉnh sửa -->
+@if (showEditModal && editingUser) {
+  <div class="modal-overlay" (click)="closeEdit()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h3>Chỉnh sửa khách hàng</h3>
+        <button class="modal__close" (click)="closeEdit()">✕</button>
+      </div>
+      @if (editError) { <div class="modal__error">{{ editError }}</div> }
+      <form [formGroup]="editForm" (ngSubmit)="saveEdit()" class="modal__body">
+        <div class="row-2">
+          <div class="field">
+            <label class="field__label">Tên <span class="req">*</span></label>
+            <input type="text" class="field__input" formControlName="firstName" placeholder="Tên" />
+          </div>
+          <div class="field">
+            <label class="field__label">Họ <span class="req">*</span></label>
+            <input type="text" class="field__input" formControlName="lastName" placeholder="Họ" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field__label">Email <span class="req">*</span></label>
+          <input type="email" class="field__input" formControlName="email" />
+        </div>
+        <div class="field">
+          <label class="field__label">Số điện thoại</label>
+          <input type="tel" class="field__input" formControlName="phone" placeholder="0xxxxxxxxx" />
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn-cancel" (click)="closeEdit()">Hủy</button>
+          <button type="submit" class="btn-save" [disabled]="saving">
+            @if (saving) { <span class="spinner spinner--sm"></span> } @else { Lưu thay đổi }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

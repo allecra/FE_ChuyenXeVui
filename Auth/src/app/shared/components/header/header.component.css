@@ -1,0 +1,117 @@
+.header {
+  background: #fff;
+  border-bottom: 1px solid #ebebeb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+/* Logo — cố định bên trái */
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-right: 32px;
+  flex-shrink: 0;
+}
+
+.header__logo strong {
+  color: #22c55e;
+}
+
+/* Nav — chiếm phần còn lại ở giữa */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+}
+
+.header__nav a {
+  color: #333;
+  font-size: 13.5px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.header__nav a:hover {
+  color: #f97316;
+}
+
+/* Actions — sát phải */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* Đăng ký nhà xe — cam, 2 dòng */
+.btn--company {
+  background: #f97316;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  min-width: 80px;
+}
+
+.btn--company:hover {
+  background: #ea6c0a;
+}
+
+/* Đăng nhập — outline xám */
+.btn--outline {
+  background: #fff;
+  color: #1a1a1a;
+  border: 1.5px solid #d1d5db;
+  padding: 7px 16px;
+}
+
+.btn--outline:hover {
+  border-color: #aaa;
+  color: #333;
+}
+
+/* Đăng ký — xanh lá */
+.btn--primary {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+}
+
+.btn--primary:hover {
+  background: #16a34a;
+}

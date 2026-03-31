@@ -1,0 +1,333 @@
+<div class="page">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Danh sách nhà xe đối tác</h1>
+      <p class="page-sub">Quản lý danh sách đối tác vận tải và tình trạng hợp tác.</p>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-mini">
+      <div class="stat-mini__label">Tổng nhà xe</div>
+      <div class="stat-mini__value">{{ totalCompanies }}</div>
+    </div>
+    <div class="stat-mini stat-mini--orange">
+      <div class="stat-mini__label">Đang chờ duyệt</div>
+      <div class="stat-mini__value">{{ pendingCount }}</div>
+    </div>
+    <div class="stat-mini stat-mini--blue">
+      <div class="stat-mini__label">Đang hoạt động</div>
+      <div class="stat-mini__value">{{ activeCount }}</div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-bar">
+    <div class="search-bar__input-wrap">
+      <svg class="search-bar__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" class="search-bar__input" placeholder="Tìm kiếm theo tên nhà xe..."
+        [(ngModel)]="keyword" (ngModelChange)="onSearch()" />
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn" [class.tab-btn--active]="activeTab === 'all'" (click)="setTab('all')">Tất cả</button>
+    <button class="tab-btn" [class.tab-btn--active]="activeTab === 'pending'" (click)="setTab('pending')">
+      Chờ duyệt
+      @if (pendingCount > 0) { <span class="tab-badge">{{ pendingCount }}</span> }
+    </button>
+  </div>
+
+  <!-- Tab: Tất cả nhà xe -->
+  @if (activeTab === 'all') {
+    <div class="table-card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>NHÀ XE</th>
+            <th>LIÊN HỆ</th>
+            <th>THAO TÁC</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loadingCompanies) {
+            <tr><td colspan="4" class="state-cell"><span class="spinner"></span> Đang tải...</td></tr>
+          } @else if (companies.length === 0) {
+            <tr><td colspan="4" class="state-cell">Không có dữ liệu</td></tr>
+          } @else {
+            @for (c of companies; track c.id) {
+              <tr>
+                <td>
+                  <div class="company-info">
+                    <div class="avatar" [style.background]="getAvatarColor(getCompanyName(c))">
+                      {{ getInitials(getCompanyName(c)) }}
+                    </div>
+                    <div>
+                      <div class="company-name">{{ getCompanyName(c) }}</div>
+                      <div class="text-muted text-xs">MST: {{ c.id }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div>{{ getPhone(c) }}</div>
+                  <div class="text-muted text-xs">{{ getEmail(c) }}</div>
+                </td>
+                <td>
+                  @if (getStatus(c) === 'PENDING') {
+                    <button class="btn-view-profile" (click)="viewDetail(viewAllAsReg(c))">XEM HỒ SƠ</button>
+                  } @else {
+                    <span class="badge" [ngClass]="getStatusClass(getStatus(c))">{{ getStatusLabel(getStatus(c)) }}</span>
+                  }
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+      <div class="pagination">
+        <span class="pagination__info">Hiển thị {{ companies.length }} trên tổng số {{ totalElements }} đối tác</span>
+        <div class="pagination__pages">
+          <button class="page-btn" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">‹</button>
+          @for (p of pages; track $index) {
+            @if (p === -1) { <span class="page-ellipsis">...</span> }
+            @else { <button class="page-btn" [class.page-btn--active]="p === currentPage" (click)="goToPage(p)">{{ p + 1 }}</button> }
+          }
+          <button class="page-btn" (click)="goToPage(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">›</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Tab: Chờ duyệt -->
+  @if (activeTab === 'pending') {
+    <div class="table-card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>NHÀ XE</th>
+            <th>LIÊN HỆ</th>
+            <th>TRẠNG THÁI</th>
+            <th>THAO TÁC</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loadingRegs) {
+            <tr><td colspan="5" class="state-cell"><span class="spinner"></span> Đang tải...</td></tr>
+          } @else if (registrations.length === 0) {
+            <tr><td colspan="5" class="state-cell">Không có đơn đăng ký nào</td></tr>
+          } @else {
+            @for (r of registrations; track r.id) {
+              <tr>
+                <td>
+                  <div class="company-info">
+                    <div class="avatar" [style.background]="'#f97316'">{{ getInitials(r.company_name) }}</div>
+                    <div>
+                      <div class="company-name">{{ r.company_name }}</div>
+                      <div class="text-muted text-xs">MST: {{ r.id }}</div>
+                      <div class="text-muted text-xs">{{ r.email }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div>{{ r.phone_number || '—' }}</div>
+                  <div class="text-muted text-xs">{{ r.email }}</div>
+                </td>
+                <td>
+                  <span class="badge" [ngClass]="getStatusClass(r.status)">{{ getStatusLabel(r.status) }}</span>
+                </td>
+                <td>
+                  <div class="actions actions--col">
+                    <button class="action-link" (click)="viewDetail(r)">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                      </svg>
+                      Xem hồ sơ
+                    </button>
+                    @if (r.status === 'PENDING') {
+                      <button class="action-link action-link--green" (click)="approve(r)">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Duyệt
+                      </button>
+                      <button class="action-link action-link--red" (click)="openReject(r)">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        Từ chối
+                      </button>
+                    }
+                  </div>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+      <div class="pagination">
+        <span class="pagination__info">Hiển thị {{ registrations.length }} trên tổng số {{ regTotal }} yêu cầu chờ duyệt</span>
+        <div class="pagination__pages">
+          <button class="page-btn" (click)="goToRegPage(regPage - 1)" [disabled]="regPage === 0">‹</button>
+          @for (p of regPages; track p) {
+            <button class="page-btn" [class.page-btn--active]="p === regPage" (click)="goToRegPage(p)">{{ p + 1 }}</button>
+          }
+          <button class="page-btn" (click)="goToRegPage(regPage + 1)" [disabled]="regPage >= regTotalPages - 1">›</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Modal xem hồ sơ -->
+@if (showDetailModal && selectedReg) {
+  <div class="modal-overlay" (click)="closeDetail()">
+    <div class="modal modal--wide" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h3>Hồ sơ đăng ký nhà xe</h3>
+        <button class="modal__close" (click)="closeDetail()">✕</button>
+      </div>
+      <div class="modal__body">
+        @if (selectedReg.image) {
+          <img [src]="selectedReg.image" alt="Logo" class="company-logo" />
+        }
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="detail-label">Tên nhà xe</span>
+            <span class="detail-value">{{ selectedReg.company_name }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email</span>
+            <span class="detail-value">{{ selectedReg.email }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Số điện thoại</span>
+            <span class="detail-value">{{ selectedReg.phone_number || '—' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Địa chỉ</span>
+            <span class="detail-value">{{ selectedReg.address || '—' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Trạng thái</span>
+            <span class="badge" [ngClass]="getStatusClass(selectedReg.status)">{{ getStatusLabel(selectedReg.status) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Ngày gửi</span>
+            <span class="detail-value">{{ formatDate(selectedReg.created_at) }}</span>
+          </div>
+          @if (selectedReg.descriptions) {
+            <div class="detail-item detail-item--full">
+              <span class="detail-label">Mô tả</span>
+              <span class="detail-value">{{ selectedReg.descriptions }}</span>
+            </div>
+          }
+          @if (selectedReg.business_license) {
+            <div class="detail-item detail-item--full">
+              <span class="detail-label">Giấy phép kinh doanh</span>
+              <a [href]="selectedReg.business_license" target="_blank" class="link-action">Xem giấy phép</a>
+            </div>
+          }
+          @if (selectedReg.admin_notes) {
+            <div class="detail-item detail-item--full">
+              <span class="detail-label">Ghi chú admin</span>
+              <span class="detail-value">{{ selectedReg.admin_notes }}</span>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="modal__footer">
+        @if (selectedReg.status === 'PENDING') {
+          <button class="btn-reject" (click)="openReject(selectedReg); closeDetail()">Từ chối</button>
+          <button class="btn-approve" [disabled]="actionLoading" (click)="approve(selectedReg)">
+            @if (actionLoading) { <span class="spinner spinner--sm"></span> } @else { Duyệt đơn }
+          </button>
+        } @else {
+          <button class="btn-cancel" (click)="closeDetail()">Đóng</button>
+        }
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Modal chỉnh sửa nhà xe -->
+@if (showEditModal && editingCompany) {
+  <div class="modal-overlay" (click)="closeEditCompany()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h3>Chỉnh sửa nhà xe</h3>
+        <button class="modal__close" (click)="closeEditCompany()">✕</button>
+      </div>
+      <div class="modal__body">
+        @if (editError) { <div class="modal__error">{{ editError }}</div> }
+        <div class="detail-grid">
+          <div class="detail-item detail-item--full">
+            <span class="detail-label">Tên nhà xe</span>
+            <input type="text" class="field__input" [(ngModel)]="editCompanyName" placeholder="Tên nhà xe" />
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Số điện thoại</span>
+            <span class="detail-value">{{ getPhone(editingCompany) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Email</span>
+            <span class="detail-value">{{ getEmail(editingCompany) }}</span>
+          </div>
+          <div class="detail-item detail-item--full">
+            <span class="detail-label">Địa chỉ</span>
+            <span class="detail-value">{{ editingCompany.address || '—' }}</span>
+          </div>
+          <div class="detail-item detail-item--full">
+            <span class="detail-label">Ghi chú admin</span>
+            <textarea class="field__input field__textarea" rows="3"
+              [(ngModel)]="editDescriptions"
+              placeholder="Ghi chú về nhà xe..."></textarea>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Trạng thái</span>
+            <span class="badge" [ngClass]="getStatusClass(getStatus(editingCompany))">{{ getStatusLabel(getStatus(editingCompany)) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Ngày đăng ký</span>
+            <span class="detail-value">{{ formatDate(editingCompany.created_at) }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn-cancel" (click)="closeEditCompany()">Hủy</button>
+        <button class="btn-approve" [disabled]="savingEdit" (click)="saveEditCompany()">
+          @if (savingEdit) { <span class="spinner spinner--sm"></span> } @else { Lưu thay đổi }
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Modal từ chối -->
+@if (showRejectModal) {
+  <div class="modal-overlay" (click)="closeReject()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal__header">
+        <h3>Từ chối đơn đăng ký</h3>
+        <button class="modal__close" (click)="closeReject()">✕</button>
+      </div>
+      <div class="modal__body">
+        <div class="field">
+          <label class="field__label">Lý do từ chối</label>
+          <textarea class="field__input field__textarea" rows="4"
+            placeholder="Nhập lý do từ chối để thông báo cho nhà xe..."
+            [(ngModel)]="rejectNote"></textarea>
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn-cancel" (click)="closeReject()">Hủy</button>
+        <button class="btn-reject" [disabled]="actionLoading" (click)="confirmReject()">
+          @if (actionLoading) { <span class="spinner spinner--sm"></span> } @else { Xác nhận từ chối }
+        </button>
+      </div>
+    </div>
+  </div>
+}

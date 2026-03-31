@@ -1,0 +1,280 @@
+.page {
+  min-height: calc(100vh - 64px);
+  background: #fdf6ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 40px 40px 36px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card__icon {
+  margin-bottom: 16px;
+}
+
+.card__title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.card__subtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+/* Alert */
+.alert--error {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+}
+
+/* Form */
+form {
+  width: 100%;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field__label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.field__input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #1a1a1a;
+  background: #f9fafb;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.field__input::placeholder {
+  color: #b0b7c3;
+}
+
+.field__input:focus {
+  border-color: #f97316;
+  background: #fff;
+}
+
+.field--error .field__input {
+  border-color: #f87171;
+}
+
+.field__error {
+  display: block;
+  font-size: 12px;
+  color: #ef4444;
+  margin-top: 4px;
+}
+
+/* Password with eye toggle */
+.field__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field__input--with-icon {
+  padding-right: 44px;
+}
+
+.field__eye {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.field__eye:hover {
+  color: #f97316;
+}
+
+/* Remember + Forgot */
+.row-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.remember__checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #f97316;
+  cursor: pointer;
+}
+
+.remember__text {
+  font-size: 14px;
+  color: #555;
+}
+
+.forgot-link {
+  font-size: 14px;
+  color: #f97316;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Submit */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: #f97316;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: #ea6c0a;
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+/* Social */
+.social {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.social__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.social__btn:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+}
+
+/* Register link */
+.register-link {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.register-link__anchor {
+  color: #f97316;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link__anchor:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 28px 20px 24px;
+  }
+
+  .social {
+    flex-direction: column;
+  }
+}
